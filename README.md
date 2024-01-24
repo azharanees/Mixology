@@ -12,7 +12,8 @@ Mixology analyzes your taste, predicts your next favorite cocktail, and offers p
      - Email : a_mohammedanees@fanshaweonline.ca
      - Student Number : 1158357
  - Shashi Dev Shrestha
-
+     - Email : s_shretha@fanshaweonline.ca
+     - Student Number : 1178764
 
 
 ## Mixology Mobile App Features
