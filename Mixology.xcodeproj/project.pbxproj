@@ -16,6 +16,9 @@
 		0B2321642B60C662002458D3 /* MixologyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2321632B60C662002458D3 /* MixologyTests.swift */; };
 		0B23216E2B60C662002458D3 /* MixologyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B23216D2B60C662002458D3 /* MixologyUITests.swift */; };
 		0B2321702B60C662002458D3 /* MixologyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B23216F2B60C662002458D3 /* MixologyUITestsLaunchTests.swift */; };
+		0BE1FFCF2B7AEBE900A4823B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFCE2B7AEBE900A4823B /* HomeView.swift */; };
+		0BE1FFD12B7AEBF700A4823B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */; };
+		0BE1FFD32B7AEC0200A4823B /* CocktailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 		0B2321692B60C662002458D3 /* MixologyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixologyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B23216D2B60C662002458D3 /* MixologyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixologyUITests.swift; sourceTree = "<group>"; };
 		0B23216F2B60C662002458D3 /* MixologyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixologyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0BE1FFCE2B7AEBE900A4823B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,7 @@
 		0B23214C2B60C661002458D3 /* Mixology */ = {
 			isa = PBXGroup;
 			children = (
+				0BE1FFC92B7AEBB900A4823B /* Features */,
 				0B23214D2B60C661002458D3 /* MixologyApp.swift */,
 				0B23214F2B60C661002458D3 /* ContentView.swift */,
 				0B2321512B60C662002458D3 /* Assets.xcassets */,
@@ -131,6 +138,48 @@
 				0B23216F2B60C662002458D3 /* MixologyUITestsLaunchTests.swift */,
 			);
 			path = MixologyUITests;
+			sourceTree = "<group>";
+		};
+		0BE1FFC92B7AEBB900A4823B /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				0BE1FFCB2B7AEBC500A4823B /* Home */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		0BE1FFCA2B7AEBBF00A4823B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0BE1FFCB2B7AEBC500A4823B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0BE1FFCD2B7AEBD300A4823B /* ViewModel */,
+				0BE1FFCC2B7AEBCF00A4823B /* View */,
+				0BE1FFCA2B7AEBBF00A4823B /* Model */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0BE1FFCC2B7AEBCF00A4823B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0BE1FFCE2B7AEBE900A4823B /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0BE1FFCD2B7AEBD300A4823B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,8 +313,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B2321572B60C662002458D3 /* Persistence.swift in Sources */,
+				0BE1FFD12B7AEBF700A4823B /* HomeViewModel.swift in Sources */,
+				0BE1FFD32B7AEC0200A4823B /* CocktailModel.swift in Sources */,
 				0B23215A2B60C662002458D3 /* Mixology.xcdatamodeld in Sources */,
 				0B2321502B60C661002458D3 /* ContentView.swift in Sources */,
+				0BE1FFCF2B7AEBE900A4823B /* HomeView.swift in Sources */,
 				0B23214E2B60C661002458D3 /* MixologyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
