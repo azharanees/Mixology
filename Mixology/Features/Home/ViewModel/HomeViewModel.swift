@@ -36,7 +36,7 @@ class HomeViewModel : ObservableObject {
     }
     
     func filterByCategory(filter: String) {
-         apiManager.filterByCateogry(filter: filter) { (result: Result<CocktailDrinkList, Error>) in
+         apiManager.filterByCateogry(filter: filter) { (result: Result<DrinkList, Error>) in
              switch result {
              case .success(let cocktailList):
                  let cocktailCards = cocktailList.drinks.map { drink in

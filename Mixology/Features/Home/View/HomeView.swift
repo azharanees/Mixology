@@ -11,21 +11,28 @@ import SwiftUI
 struct HomeView: View {
     @State private var searchText = ""
     @ObservedObject var viewModel = HomeViewModel()
+    @State private var selectedCategory: String?
+
 
        var body: some View {
 
            let cocktails = viewModel.cocktailDetails
            VStack {
-               SearchBar(text: $searchText)
+               SearchBar(text: $searchText, searchName: "Search for " + (selectedCategory ?? ""))
                Spacer()
                ScrollView(.horizontal, showsIndicators: false) {
                    HStack(spacing: 16) {
-                                      ForEach(viewModel.iconButtons, id: \.self) { item in
-                                              IconButton(item: item)
-                                      }
-                                  }
-                                                    .padding(.horizontal)
-                              }
+                       ForEach(viewModel.iconButtons, id: \.self) { item in
+                           IconButton(item: item){
+                               selectedCategory = item.drinkName
+                               viewModel.filterByCategory(filter: item.drinkName)
+
+                           }
+                       }
+
+                    }
+                    .padding(.horizontal)
+                }
                Spacer()
                
                ScrollView(.vertical,showsIndicators: false) {
@@ -47,6 +54,7 @@ struct HomeView: View {
                            .padding(.horizontal)
                        }
                    }.padding(.top,15).onAppear {
+                       self.selectedCategory = "Cocktail"
                        viewModel.filterByCategory(filter: "cocktail")
                    }
 
@@ -113,10 +121,14 @@ struct HomeView: View {
 }
 struct IconButton: View {
     var item: IconButtonItem
+    var action: () -> Void // Closure to handle the action
+
 
     var body: some View {
         Button(action: {
             // Action for the icon button
+            self.action() // Call the action closure when the button is tapped
+
         }) {
             VStack {
                 
@@ -142,10 +154,11 @@ struct IconButtonItem: Identifiable, Hashable {
 
 struct SearchBar: View {
     @Binding var text: String
+     var searchName: String
 
-    var body: some View {
+        var body: some View {
         HStack {
-            TextField("Search cocktails", text: $text)
+            TextField(searchName, text: $text)
                 .padding(8)
                 .background(Color(.systemGray5))
                 .cornerRadius(8)

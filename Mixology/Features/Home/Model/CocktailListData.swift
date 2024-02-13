@@ -14,6 +14,6 @@ struct Drink: Codable {
     let idDrink: String
 }
 
-struct CocktailDrinkList: Codable {
+struct DrinkList: Codable {
     let drinks: [Drink]
 }
