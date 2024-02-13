@@ -6,11 +6,12 @@
 //
 
 import Foundation
-struct Cocktail: Identifiable {
-    var id = UUID()
+struct Cocktail: Identifiable, Decodable {
+    var id : String
     var name: String
     var description: String
     var strength:String
     var difficulty:String
     var ingredients:String
+    var image : String
 }

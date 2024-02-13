@@ -10,29 +10,21 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var searchText = ""
-       @State private var cocktails = [
-           Cocktail(name: "Margarita", description: "Classic tequila cocktail", strength: "High", difficulty: "Hard", ingredients: "Tequila"),  Cocktail(name: "Margarita", description: "Classic tequila cocktail", strength: "High", difficulty: "Hard", ingredients: "Tequila"),  Cocktail(name: "Margarita", description: "Classic tequila cocktail", strength: "High", difficulty: "Hard", ingredients: "Tequila"),  Cocktail(name: "Margarita", description: "Classic tequila cocktail", strength: "High", difficulty: "Hard", ingredients: "Tequila"), Cocktail(name: "Margarita", description: "Classic tequila cocktail", strength: "High", difficulty: "Hard", ingredients: "Tequila"), Cocktail(name: "Margarita", description: "Classic tequila cocktail", strength: "High", difficulty: "Hard", ingredients: "Tequila"), Cocktail(name: "Margarita", description: "Classic tequila cocktail", strength: "High", difficulty: "Hard", ingredients: "Tequila"), Cocktail(name: "Margarita", description: "Classic tequila cocktail", strength: "High", difficulty: "Hard", ingredients: "Tequila"),
-           // Add more cocktails as needed
-       ]
-    
-    
-    private let iconButtons: [IconButtonItem] = [
-        IconButtonItem(imageName: "heart.fill", color: .red),
-        IconButtonItem(imageName: "star.fill", color: .yellow),IconButtonItem(imageName: "wineglass", color: .yellow),IconButtonItem(imageName: "wineglass", color: .yellow),IconButtonItem(imageName: "wineglass", color: .yellow),IconButtonItem(imageName: "wineglass", color: .yellow),IconButtonItem(imageName: "star.fill", color: .yellow),IconButtonItem(imageName: "star.fill", color: .yellow),IconButtonItem(imageName: "star.fill", color: .yellow),IconButtonItem(imageName: "star.fill", color: .yellow),
-        // Add more icon buttons as needed
-    ]
+    @ObservedObject var viewModel = HomeViewModel()
 
        var body: some View {
+
+           let cocktails = viewModel.cocktailDetails
            VStack {
                SearchBar(text: $searchText)
                Spacer()
                ScrollView(.horizontal, showsIndicators: false) {
-                                  HStack {
-                                      ForEach(iconButtons, id: \.self) { item in
-                                          IconButton(item: item)
+                   HStack(spacing: 16) {
+                                      ForEach(viewModel.iconButtons, id: \.self) { item in
+                                              IconButton(item: item)
                                       }
                                   }
-                                  .padding(.horizontal)
+                                                    .padding(.horizontal)
                               }
                Spacer()
                
@@ -54,7 +46,10 @@ struct HomeView: View {
                            }
                            .padding(.horizontal)
                        }
-                   }.padding(.top,15)
+                   }.padding(.top,15).onAppear {
+                       viewModel.filterByCategory(filter: "cocktail")
+                   }
+
                     
                    Spacer()
 
@@ -123,10 +118,17 @@ struct IconButton: View {
         Button(action: {
             // Action for the icon button
         }) {
-            Image(systemName: item.imageName)
-                .foregroundColor(item.color)
-                .imageScale(.large)
-                .padding()
+            VStack {
+                
+                Image(systemName: item.imageName)
+                    .foregroundColor(item.color)
+                    .imageScale(.large)
+                    .padding(3)
+                
+                Text(item.drinkName)
+                    .font(.caption)
+                    .foregroundColor(.primary)
+            }
         }
     }
 }
@@ -135,6 +137,7 @@ struct IconButtonItem: Identifiable, Hashable {
     var id = UUID()
     var imageName: String
     var color: Color
+    var drinkName: String
 }
 
 struct SearchBar: View {
@@ -167,7 +170,7 @@ struct CardView: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             // Load image from URL using AsyncImage and set it as the background of the card
-            AsyncImage(url: URL(string: "https://hips.hearstapps.com/hmg-prod/images/frozen-blue-moscato-margaritas3-1653174015.jpg")) { phase in
+            AsyncImage(url: URL(string: cocktail.image)) { phase in
                 switch phase {
                 case .empty:
                     ProgressView()

@@ -17,6 +17,8 @@ class ApiClient {
     
     private enum Endpoint: String {
         case categoryList = "list.php?c=list"
+        case filterByCategory = "filter.php?c="
+
      }
     
     private enum ApiError: Error {
@@ -24,9 +26,14 @@ class ApiClient {
      }
      
     
-    private func makeRequest<T: Decodable>(endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void) {
+    private func makeRequest<T: Decodable>(endpoint: Endpoint, filter: String?=nil, completion: @escaping (Result<T, Error>) -> Void) {
         
-        let urlString = baseUrl.absoluteString + "/" + endpoint.rawValue
+        var urlString = baseUrl.absoluteString + "/" + endpoint.rawValue
+        
+        if let filter = filter {
+              urlString += filter
+          }
+        
         guard let url = URL(string: urlString) else {
             fatalError("Invalid URL")
         }
@@ -55,4 +62,15 @@ class ApiClient {
             completion(result)
         }
     }
+    
+    func filterByCateogry<T: Decodable>(filter : String, completion: @escaping (Result<T, Error>) -> Void) {
+        makeRequest(endpoint: .filterByCategory, filter: filter) { result in
+            completion(result)
+        }
+    }
+
+    
+    
+    
+    
 }

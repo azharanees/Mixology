@@ -20,6 +20,8 @@
 		0BE1FFD12B7AEBF700A4823B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */; };
 		0BE1FFD32B7AEC0200A4823B /* CocktailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */; };
 		C8BF757E2B7AF299007F1335 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF757D2B7AF299007F1335 /* APIService.swift */; };
+		C8BF75802B7BC7EE007F1335 /* CategoryListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF757F2B7BC7EE007F1335 /* CategoryListData.swift */; };
+		C8BF75842B7BE3B0007F1335 /* CocktailListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75832B7BE3B0007F1335 /* CocktailListData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailModel.swift; sourceTree = "<group>"; };
 		C8BF757D2B7AF299007F1335 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		C8BF757F2B7BC7EE007F1335 /* CategoryListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListData.swift; sourceTree = "<group>"; };
+		C8BF75832B7BE3B0007F1335 /* CocktailListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailListData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */,
+				C8BF757F2B7BC7EE007F1335 /* CategoryListData.swift */,
+				C8BF75832B7BE3B0007F1335 /* CocktailListData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,10 +331,12 @@
 			files = (
 				0B2321572B60C662002458D3 /* Persistence.swift in Sources */,
 				0BE1FFD12B7AEBF700A4823B /* HomeViewModel.swift in Sources */,
+				C8BF75802B7BC7EE007F1335 /* CategoryListData.swift in Sources */,
 				0BE1FFD32B7AEC0200A4823B /* CocktailModel.swift in Sources */,
 				0B23215A2B60C662002458D3 /* Mixology.xcdatamodeld in Sources */,
 				0B2321502B60C661002458D3 /* ContentView.swift in Sources */,
 				0BE1FFCF2B7AEBE900A4823B /* HomeView.swift in Sources */,
+				C8BF75842B7BE3B0007F1335 /* CocktailListData.swift in Sources */,
 				C8BF757E2B7AF299007F1335 /* APIService.swift in Sources */,
 				0B23214E2B60C661002458D3 /* MixologyApp.swift in Sources */,
 			);
