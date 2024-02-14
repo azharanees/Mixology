@@ -12,14 +12,20 @@ struct HomeView: View {
     @State private var searchText = ""
     @ObservedObject var viewModel = HomeViewModel()
     @State private var selectedCategory: String?
+    @State private var selectedSortCriteria: HomeViewModel.SortCriteria  = .name
+    @State private var isPickerExpanded = false
 
 
        var body: some View {
 
            let cocktails = viewModel.cocktailDetails
            VStack {
-               SearchBar(text: $searchText, searchName: "Search for " + (selectedCategory ?? ""))
+               HStack {
+                            SearchBar(text: $searchText, searchName: "Search for " + (selectedCategory ?? ""))
+                        }
+
                Spacer()
+
                ScrollView(.horizontal, showsIndicators: false) {
                    HStack(spacing: 16) {
                        ForEach(viewModel.iconButtons, id: \.self) { item in
@@ -31,9 +37,31 @@ struct HomeView: View {
                        }
 
                     }
-                    .padding(.horizontal)
+                   .padding(.bottom)
                 }
                Spacer()
+               
+               
+               HStack{
+
+                   Picker(selection: $selectedSortCriteria, label: Text(isPickerExpanded ? "Sort by: \(selectedSortCriteria == .name ? "Name" : "Strength")" : "Sort by")) {
+                       Text("Name").tag(HomeViewModel.SortCriteria.name)
+                       Text("Strength").tag(HomeViewModel.SortCriteria.strength)
+                   }
+                   .pickerStyle(MenuPickerStyle())
+                   .padding(.horizontal)
+                   .background(Color(.systemBackground))
+                   .clipShape(RoundedRectangle(cornerRadius: 8))
+                   .shadow(radius: 1)
+                   .foregroundColor(.red)
+                   .onChange(of: selectedSortCriteria) { newSortCriteria in
+                       viewModel.sortDrinks(by: newSortCriteria)
+                   }
+                   Spacer()
+
+               }
+               
+
                
                ScrollView(.vertical,showsIndicators: false) {
                    

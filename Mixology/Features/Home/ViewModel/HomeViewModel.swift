@@ -59,6 +59,17 @@ class HomeViewModel : ObservableObject {
          }
      }
     
+
+
+    func sortDrinks(by criteria: SortCriteria) {
+        switch criteria {
+        case .name:
+            cocktailDetails.sort { $0.name < $1.name }
+        case .strength:
+            cocktailDetails.sort { $0.id < $1.id }
+        }
+    }
+    
     func getSymbolName(for name: String) -> String {
         switch name {
         case "Ordinary Drink":
@@ -86,6 +97,11 @@ class HomeViewModel : ObservableObject {
         default:
             return "questionmark.circle"
         }
+    }
+    
+    enum SortCriteria {
+        case name
+        case strength
     }
     
 }
