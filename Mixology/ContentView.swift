@@ -15,10 +15,30 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
+    
+    let apiManager = ApiClient.shared
+    
+    struct CategoryListData : Decodable{
+        let drinks: [DrinkCategory]
 
+    }
+    struct DrinkCategory: Decodable {
+        let strCategory: String
+    }
+        
     var body: some View {
         NavigationView {
             List {
+                let data: () =  apiManager.fetchCategoryListData { (result: Result<CategoryListData, Error>) in
+                    switch result {
+                    case .success(let categoryListData):
+                        // Handle success - categoryListData contains the decoded data
+                        print("Received category list: \(categoryListData)")
+                    case .failure(let error):
+                        // Handle failure - error contains the error details
+                        print("Error fetching category list: \(error.localizedDescription)")
+                    }
+                }
                 ForEach(items) { item in
                     NavigationLink {
                         Text("Item at \(item.timestamp!, formatter: itemFormatter)")

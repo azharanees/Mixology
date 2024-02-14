@@ -13,7 +13,9 @@ struct MixologyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+           // ContentView()
+             //   .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            HomeView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
