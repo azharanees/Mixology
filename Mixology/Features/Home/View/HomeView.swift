@@ -23,7 +23,7 @@ struct HomeView: View {
            NavigationView {
                VStack {
                    NavigationLink(destination: ListView(cocktails: viewModel.cocktailDetails), isActive: $isNavigateToListView) { EmptyView() }
-                   SearchBar(text: $searchText, searchName: "Margarita", isNavigateToListView: $isNavigateToListView)
+                   SearchBar(text: $searchText, searchName: selectedCategory ?? "Margarita", isNavigateToListView: $isNavigateToListView)
                    
                    Spacer()
 
