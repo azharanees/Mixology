@@ -16,6 +16,8 @@
 		0B2321642B60C662002458D3 /* MixologyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2321632B60C662002458D3 /* MixologyTests.swift */; };
 		0B23216E2B60C662002458D3 /* MixologyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B23216D2B60C662002458D3 /* MixologyUITests.swift */; };
 		0B2321702B60C662002458D3 /* MixologyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B23216F2B60C662002458D3 /* MixologyUITestsLaunchTests.swift */; };
+		0B2CDE5D2B967F470002AFF3 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE5C2B967F470002AFF3 /* FavouritesView.swift */; };
+		0B2CDE5F2B96810C0002AFF3 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE5E2B96810C0002AFF3 /* FavouritesViewModel.swift */; };
 		0BE1FFCF2B7AEBE900A4823B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFCE2B7AEBE900A4823B /* HomeView.swift */; };
 		0BE1FFD12B7AEBF700A4823B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */; };
 		0BE1FFD32B7AEC0200A4823B /* CocktailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */; };
@@ -59,6 +61,8 @@
 		0B2321692B60C662002458D3 /* MixologyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixologyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B23216D2B60C662002458D3 /* MixologyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixologyUITests.swift; sourceTree = "<group>"; };
 		0B23216F2B60C662002458D3 /* MixologyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixologyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0B2CDE5C2B967F470002AFF3 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
+		0B2CDE5E2B96810C0002AFF3 /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		0BE1FFCE2B7AEBE900A4823B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailModel.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 		0BE1FFDC2B7C504300A4823B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0B2CDE5E2B96810C0002AFF3 /* FavouritesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				0BE1FFDE2B7C504300A4823B /* ListView.swift */,
+				0B2CDE5C2B967F470002AFF3 /* FavouritesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -410,10 +416,12 @@
 				0BE1FFCF2B7AEBE900A4823B /* HomeView.swift in Sources */,
 				C8BF75842B7BE3B0007F1335 /* CocktailListData.swift in Sources */,
 				C8BF75C62B966931007F1335 /* CustomRecipeModel.swift in Sources */,
+				0B2CDE5F2B96810C0002AFF3 /* FavouritesViewModel.swift in Sources */,
 				0BE1FFDF2B7C504300A4823B /* ListView.swift in Sources */,
 				C8BF75C22B96664B007F1335 /* CocktailViewModel.swift in Sources */,
 				C8BF757E2B7AF299007F1335 /* APIService.swift in Sources */,
 				C8BF75C42B96689D007F1335 /* CoreDataManager.swift in Sources */,
+				0B2CDE5D2B967F470002AFF3 /* FavouritesView.swift in Sources */,
 				0B23214E2B60C661002458D3 /* MixologyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

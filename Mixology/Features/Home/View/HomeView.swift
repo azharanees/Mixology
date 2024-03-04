@@ -20,132 +20,147 @@ struct HomeView: View {
        var body: some View {
 
            let cocktails = viewModel.cocktailDetails
-           NavigationView {
-               VStack {
-                   NavigationLink(destination: ListView(cocktails: viewModel.cocktailDetails), isActive: $isNavigateToListView) { EmptyView() }
-                   SearchBar(text: $searchText, searchName: selectedCategory ?? "Margarita", isNavigateToListView: $isNavigateToListView)
-                   
-                   Spacer()
+           TabView {
+               NavigationView {
+                   VStack {
+                       NavigationLink(destination: ListView(cocktails: viewModel.cocktailDetails), isActive: $isNavigateToListView) { EmptyView() }
+                       SearchBar(text: $searchText, searchName: selectedCategory ?? "Margarita", isNavigateToListView: $isNavigateToListView)
+                       
+                       Spacer()
 
-                   ScrollView(.horizontal, showsIndicators: false) {
-                       HStack(spacing: 16) {
-                           ForEach(viewModel.iconButtons, id: \.self) { item in
-                               IconButton(item: item){
-                                   selectedCategory = item.drinkName
-                                   viewModel.filterByCategory(filter: item.drinkName)
+                       ScrollView(.horizontal, showsIndicators: false) {
+                           HStack(spacing: 16) {
+                               ForEach(viewModel.iconButtons, id: \.self) { item in
+                                   IconButton(item: item){
+                                       selectedCategory = item.drinkName
+                                       viewModel.filterByCategory(filter: item.drinkName)
 
+                                   }
                                }
-                           }
 
+                            }
+                           .padding(.bottom)
                         }
-                       .padding(.bottom)
-                    }
-                   Spacer()
-                   
-                   
-                   HStack{
-
-                       Picker(selection: $selectedSortCriteria, label: Text(isPickerExpanded ? "Sort by: \(selectedSortCriteria == .name ? "Name" : "Strength")" : "Sort by")) {
-                           Text("Name").tag(HomeViewModel.SortCriteria.name)
-                           Text("Strength").tag(HomeViewModel.SortCriteria.strength)
-                       }
-                       .pickerStyle(MenuPickerStyle())
-                       .padding(.horizontal)
-                       .background(Color(.systemBackground))
-                       .clipShape(RoundedRectangle(cornerRadius: 8))
-                       .shadow(radius: 1)
-                       .foregroundColor(.red)
-                       .onChange(of: selectedSortCriteria) { newSortCriteria in
-                           viewModel.sortDrinks(by: newSortCriteria)
-                       }
                        Spacer()
-
-                   }
-                   
-
-                   
-                   ScrollView(.vertical,showsIndicators: false) {
                        
-                       VStack(alignment: .leading) {
-                           Text("Most Popular")
-                                         .font(.headline)
-                                         .multilineTextAlignment(.center)
-                                         .padding(.bottom, 5)
-                                         .padding(.leading, 20)
+                       
+                       HStack{
 
-                           ScrollView(.horizontal, showsIndicators: false) {
-                               HStack {
-                                   ForEach(cocktails) { cocktail in
-                                       CardView(cocktail: cocktail)
-                                           .frame(width: 200) // Adjust the card width as needed
-                                   }
-                               }
-                               .padding(.horizontal)
+                           Picker(selection: $selectedSortCriteria, label: Text(isPickerExpanded ? "Sort by: \(selectedSortCriteria == .name ? "Name" : "Strength")" : "Sort by")) {
+                               Text("Name").tag(HomeViewModel.SortCriteria.name)
+                               Text("Strength").tag(HomeViewModel.SortCriteria.strength)
                            }
-                       }.padding(.top,15).onAppear {
-                           self.selectedCategory = "Cocktail"
-                           viewModel.filterByCategory(filter: "cocktail")
+                           .pickerStyle(MenuPickerStyle())
+                           .padding(.horizontal)
+                           .background(Color(.systemBackground))
+                           .clipShape(RoundedRectangle(cornerRadius: 8))
+                           .shadow(radius: 1)
+                           .foregroundColor(.red)
+                           .onChange(of: selectedSortCriteria) { newSortCriteria in
+                               viewModel.sortDrinks(by: newSortCriteria)
+                           }
+                           Spacer()
+
                        }
-
-                        
-                       Spacer()
-
-                   
-                       VStack(alignment: .leading) {
-                           Text("For You")
-                                         .font(.headline)
-                                         .padding(.bottom, 5)
-                                         .padding(.leading, 20)
-
-                           ScrollView(.horizontal, showsIndicators: false) {
-                               HStack {
-                                   ForEach(cocktails) { cocktail in
-                                       CardView(cocktail: cocktail)
-                                           .frame(width: 200) // Adjust the card width as needed
-                                   }
-                               }
-                               .padding(.horizontal)
-                           }
-                       }.padding(.top,15)
-                   
-                       VStack(alignment: .leading) {
-                           Text("Favourites")
-                                         .font(.headline)
-                                         .padding(.bottom, 5)
-                                         .padding(.leading, 20)
-
-                           ScrollView(.horizontal, showsIndicators: false) {
-                               HStack {
-                                   ForEach(cocktails) { cocktail in
-                                       CardView(cocktail: cocktail)
-                                           .frame(width: 200) // Adjust the card width as needed
-                                   }
-                               }
-                               .padding(.horizontal)
-                           }
-                       }.padding(.top,15)
                        
-                       VStack(alignment: .leading) {
-                           Text("Underrated")
-                                         .font(.headline)
-                                         .padding(.bottom, 8)
-                                         .padding(.leading, 20)
+
+                       
+                       ScrollView(.vertical,showsIndicators: false) {
                            
-                                            
-                           ScrollView(.horizontal, showsIndicators: false) {
-                               HStack {
-                                   ForEach(cocktails) { cocktail in
-                                       CardView(cocktail: cocktail)
-                                           .frame(width: 200) // Adjust the card width as needed
+                           VStack(alignment: .leading) {
+                               Text("Most Popular")
+                                             .font(.headline)
+                                             .multilineTextAlignment(.center)
+                                             .padding(.bottom, 5)
+                                             .padding(.leading, 20)
+
+                               ScrollView(.horizontal, showsIndicators: false) {
+                                   HStack {
+                                       ForEach(cocktails) { cocktail in
+                                           CardView(cocktail: cocktail)
+                                               .frame(width: 200) // Adjust the card width as needed
+                                       }
                                    }
+                                   .padding(.horizontal)
                                }
-                               .padding(.horizontal)
+                           }.padding(.top,15).onAppear {
+                               self.selectedCategory = "Cocktail"
+                               viewModel.filterByCategory(filter: "cocktail")
                            }
-                       } .padding(.top,15)
+
+                            
+                           Spacer()
+
+                       
+                           VStack(alignment: .leading) {
+                               Text("For You")
+                                             .font(.headline)
+                                             .padding(.bottom, 5)
+                                             .padding(.leading, 20)
+
+                               ScrollView(.horizontal, showsIndicators: false) {
+                                   HStack {
+                                       ForEach(cocktails) { cocktail in
+                                           CardView(cocktail: cocktail)
+                                               .frame(width: 200) // Adjust the card width as needed
+                                       }
+                                   }
+                                   .padding(.horizontal)
+                               }
+                           }.padding(.top,15)
+                       
+                           VStack(alignment: .leading) {
+                               Text("Favourites")
+                                             .font(.headline)
+                                             .padding(.bottom, 5)
+                                             .padding(.leading, 20)
+
+                               ScrollView(.horizontal, showsIndicators: false) {
+                                   HStack {
+                                       ForEach(cocktails) { cocktail in
+                                           CardView(cocktail: cocktail)
+                                               .frame(width: 200) // Adjust the card width as needed
+                                       }
+                                   }
+                                   .padding(.horizontal)
+                               }
+                           }.padding(.top,15)
+                           
+                           VStack(alignment: .leading) {
+                               Text("Underrated")
+                                             .font(.headline)
+                                             .padding(.bottom, 8)
+                                             .padding(.leading, 20)
+                               
+                                                
+                               ScrollView(.horizontal, showsIndicators: false) {
+                                   HStack {
+                                       ForEach(cocktails) { cocktail in
+                                           CardView(cocktail: cocktail)
+                                               .frame(width: 200) // Adjust the card width as needed
+                                       }
+                                   }
+                                   .padding(.horizontal)
+                               }
+                           } .padding(.top,15)
+                       }
+                       
                    }
-                   
+                   .padding()
+               }.tabItem {
+                   Label("Home", systemImage: "house.fill")
                }
-               .padding()
+               
+               VStack{
+                   
+               }.tabItem {
+                   Label("Your Cocktails", systemImage: "wineglass")
+               }
+               VStack{
+                   FavoritesView()
+               }.tabItem {
+                   Label("Favourites", systemImage: "star.fill")
+               }
            }
        }
 }
