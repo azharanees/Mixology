@@ -28,7 +28,7 @@
 		C8BF75C02B9665C0007F1335 /* CustomReceipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75BF2B9665C0007F1335 /* CustomReceipeView.swift */; };
 		C8BF75C22B96664B007F1335 /* CocktailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75C12B96664B007F1335 /* CocktailViewModel.swift */; };
 		C8BF75C42B96689D007F1335 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75C32B96689D007F1335 /* CoreDataManager.swift */; };
-		C8BF75C62B966931007F1335 /* CustomRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75C52B966931007F1335 /* CustomRecipeModel.swift */; };
+		C8BF75C82B976832007F1335 /* CustomRecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75C72B976832007F1335 /* CustomRecipeListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +73,7 @@
 		C8BF75BF2B9665C0007F1335 /* CustomReceipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomReceipeView.swift; sourceTree = "<group>"; };
 		C8BF75C12B96664B007F1335 /* CocktailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailViewModel.swift; sourceTree = "<group>"; };
 		C8BF75C32B96689D007F1335 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		C8BF75C52B966931007F1335 /* CustomRecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRecipeModel.swift; sourceTree = "<group>"; };
+		C8BF75C72B976832007F1335 /* CustomRecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRecipeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				C8BF75BF2B9665C0007F1335 /* CustomReceipeView.swift */,
+				C8BF75C72B976832007F1335 /* CustomRecipeListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -271,7 +272,6 @@
 		C8BF75BE2B96656D007F1335 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C8BF75C52B966931007F1335 /* CustomRecipeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,10 +415,10 @@
 				0B2321502B60C661002458D3 /* ContentView.swift in Sources */,
 				0BE1FFCF2B7AEBE900A4823B /* HomeView.swift in Sources */,
 				C8BF75842B7BE3B0007F1335 /* CocktailListData.swift in Sources */,
-				C8BF75C62B966931007F1335 /* CustomRecipeModel.swift in Sources */,
 				0B2CDE5F2B96810C0002AFF3 /* FavouritesViewModel.swift in Sources */,
 				0BE1FFDF2B7C504300A4823B /* ListView.swift in Sources */,
 				C8BF75C22B96664B007F1335 /* CocktailViewModel.swift in Sources */,
+				C8BF75C82B976832007F1335 /* CustomRecipeListView.swift in Sources */,
 				C8BF757E2B7AF299007F1335 /* APIService.swift in Sources */,
 				C8BF75C42B96689D007F1335 /* CoreDataManager.swift in Sources */,
 				0B2CDE5D2B967F470002AFF3 /* FavouritesView.swift in Sources */,

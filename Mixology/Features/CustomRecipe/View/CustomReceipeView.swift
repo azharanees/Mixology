@@ -8,8 +8,6 @@
 import Foundation
 import SwiftUI
 
-
-
     struct CustomReceipeView: View {
         
         @ObservedObject var viewModel: CocktailViewModel
@@ -29,28 +27,10 @@ import SwiftUI
                                 .padding(.bottom, 8)
                             
                             TextField("Name", text: $viewModel.name)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.bottom, 4)
-                            
                             TextField("Description", text: $viewModel.desc)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.bottom, 4)
-                            
                             TextField("Strength", text: $viewModel.strength)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.bottom, 4)
-                            
                             TextField("Difficulty", text: $viewModel.difficulty)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.bottom, 4)
-                            
                             TextField("Ingredients", text: $viewModel.ingredients)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.bottom, 4)
-                            
-                            TextField("Image", text: $viewModel.image)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.bottom, 4)
                         }
                         .padding()
                     }
@@ -86,6 +66,8 @@ import SwiftUI
         
         var body: some View {
             content
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.bottom, 4)
                 .background(Color.white)
                 .cornerRadius(16)
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4)

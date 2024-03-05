@@ -11,32 +11,50 @@ import CoreData
 class CoreDataManager {
     static let shared = CoreDataManager()
     
-    private init() {}
+    private let container: NSPersistentContainer
+
     
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: modelName)
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+    private init() {
+        container = NSPersistentContainer(name: "Mixology")
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                print("Core Data failed to load: \(error.localizedDescription)")
             }
-        })
-        return container
-    }()
-    
-    var modelName: String = ""
-    
-    func saveCustomCocktailRecipe<T: NSManagedObject>(_ model: T.Type, modelName: String) {
-        self.modelName = modelName
-        let context = persistentContainer.viewContext
-        guard let entityName = T.entity().name else { return }
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { return }
+        }
+    }
+
+
+    func saveCustomCocktailRecipe(_ model: CocktailViewModel) {
         
-        let newObject = T(entity: entity, insertInto: context)
+        let context = container.viewContext
+        let newObject = CustomRecipeModel(context: context)
+        
+        newObject.id = model.id
+        newObject.name = model.name
+        newObject.desc = model.desc
+        newObject.strength = model.strength
+        newObject.difficulty = model.difficulty
+        newObject.ingredients = model.ingredients
+        newObject.isFavourite = model.isFavourite
         
         do {
             try context.save()
+            print("Data Saved")
         } catch {
             print("Failed to save context: \(error)")
         }
     }
+    
+    func fetchCustomRecipes() -> [CustomRecipeModel] {
+          let context = container.viewContext
+          let fetchRequest: NSFetchRequest<CustomRecipeModel> = CustomRecipeModel.fetchRequest()
+          
+          do {
+              let recipes = try context.fetch(fetchRequest)
+              return recipes
+          } catch {
+              print("Failed to fetch custom recipes: \(error)")
+              return []
+          }
+      }
 }

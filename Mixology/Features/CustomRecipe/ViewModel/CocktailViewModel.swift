@@ -15,7 +15,9 @@ class CocktailViewModel: ObservableObject {
     @Published var strength = ""
     @Published var difficulty = ""
     @Published var ingredients = ""
-    @Published var image = ""
+    @Published var isFavourite = false
+    @Published var id = UUID()
+
     
     private let coreDataManager: CoreDataManager
     
@@ -24,31 +26,11 @@ class CocktailViewModel: ObservableObject {
     }
     
     func saveCocktail() {
-        coreDataManager.saveCustomCocktailRecipe(CustomRecipeModel.self, modelName: "CustomRecipeModel")
+        coreDataManager.saveCustomCocktailRecipe(self)
     }
-
     
-    /*func saveCocktail() {
-        do {
-             let context = CoreDataManager.shared.persistentContainer.viewContext
-             guard let entity = NSEntityDescription.entity(forEntityName: "CustomRecipeModel", in: context) else {
-                 print("Failed to retrieve entity description")
-                 return
-             }
-
-            let newCocktail = CustomRecipeModel(entity: entity, insertInto: context)
-             newCocktail.id = UUID().uuidString
-             newCocktail.name = name
-             newCocktail.desc = desc
-             newCocktail.strength = strength
-             newCocktail.difficulty = difficulty
-             newCocktail.ingredients = ingredients
-             newCocktail.image = image
-
-             try context.save()
-         } catch {
-             print("Error saving cocktail: \(error)")
-         }
-    }*/
+    func fetchSavedCocktail()->[CustomRecipeModel]{
+        return coreDataManager.fetchCustomRecipes()
+    }
 
 }
