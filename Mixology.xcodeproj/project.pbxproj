@@ -25,6 +25,10 @@
 		C8BF757E2B7AF299007F1335 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF757D2B7AF299007F1335 /* APIService.swift */; };
 		C8BF75802B7BC7EE007F1335 /* CategoryListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF757F2B7BC7EE007F1335 /* CategoryListData.swift */; };
 		C8BF75842B7BE3B0007F1335 /* CocktailListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75832B7BE3B0007F1335 /* CocktailListData.swift */; };
+		C8BF75C02B9665C0007F1335 /* CustomReceipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75BF2B9665C0007F1335 /* CustomReceipeView.swift */; };
+		C8BF75C22B96664B007F1335 /* CocktailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75C12B96664B007F1335 /* CocktailViewModel.swift */; };
+		C8BF75C42B96689D007F1335 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75C32B96689D007F1335 /* CoreDataManager.swift */; };
+		C8BF75C82B976832007F1335 /* CustomRecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BF75C72B976832007F1335 /* CustomRecipeListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +70,10 @@
 		C8BF757D2B7AF299007F1335 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		C8BF757F2B7BC7EE007F1335 /* CategoryListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListData.swift; sourceTree = "<group>"; };
 		C8BF75832B7BE3B0007F1335 /* CocktailListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailListData.swift; sourceTree = "<group>"; };
+		C8BF75BF2B9665C0007F1335 /* CustomReceipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomReceipeView.swift; sourceTree = "<group>"; };
+		C8BF75C12B96664B007F1335 /* CocktailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailViewModel.swift; sourceTree = "<group>"; };
+		C8BF75C32B96689D007F1335 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		C8BF75C72B976832007F1335 /* CustomRecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRecipeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +164,7 @@
 		0BE1FFC92B7AEBB900A4823B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				C8BF75BB2B966541007F1335 /* CustomRecipe */,
 				0BE1FFDB2B7C504300A4823B /* List */,
 				0BE1FFCB2B7AEBC500A4823B /* Home */,
 			);
@@ -228,8 +237,43 @@
 			isa = PBXGroup;
 			children = (
 				C8BF757D2B7AF299007F1335 /* APIService.swift */,
+				C8BF75C32B96689D007F1335 /* CoreDataManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		C8BF75BB2B966541007F1335 /* CustomRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				C8BF75BE2B96656D007F1335 /* Model */,
+				C8BF75BD2B966564007F1335 /* View */,
+				C8BF75BC2B96655A007F1335 /* ViewModel */,
+			);
+			path = CustomRecipe;
+			sourceTree = "<group>";
+		};
+		C8BF75BC2B96655A007F1335 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C8BF75C12B96664B007F1335 /* CocktailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C8BF75BD2B966564007F1335 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8BF75BF2B9665C0007F1335 /* CustomReceipeView.swift */,
+				C8BF75C72B976832007F1335 /* CustomRecipeListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8BF75BE2B96656D007F1335 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B2321572B60C662002458D3 /* Persistence.swift in Sources */,
+				C8BF75C02B9665C0007F1335 /* CustomReceipeView.swift in Sources */,
 				0BE1FFD12B7AEBF700A4823B /* HomeViewModel.swift in Sources */,
 				C8BF75802B7BC7EE007F1335 /* CategoryListData.swift in Sources */,
 				0BE1FFD32B7AEC0200A4823B /* CocktailModel.swift in Sources */,
@@ -372,7 +417,10 @@
 				C8BF75842B7BE3B0007F1335 /* CocktailListData.swift in Sources */,
 				0B2CDE5F2B96810C0002AFF3 /* FavouritesViewModel.swift in Sources */,
 				0BE1FFDF2B7C504300A4823B /* ListView.swift in Sources */,
+				C8BF75C22B96664B007F1335 /* CocktailViewModel.swift in Sources */,
+				C8BF75C82B976832007F1335 /* CustomRecipeListView.swift in Sources */,
 				C8BF757E2B7AF299007F1335 /* APIService.swift in Sources */,
+				C8BF75C42B96689D007F1335 /* CoreDataManager.swift in Sources */,
 				0B2CDE5D2B967F470002AFF3 /* FavouritesView.swift in Sources */,
 				0B23214E2B60C661002458D3 /* MixologyApp.swift in Sources */,
 			);

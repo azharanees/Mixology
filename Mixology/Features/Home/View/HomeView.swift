@@ -152,7 +152,7 @@ struct HomeView: View {
                }
                
                VStack{
-                   
+                   CustomRecipeListView()
                }.tabItem {
                    Label("Your Cocktails", systemImage: "wineglass")
                }
