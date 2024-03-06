@@ -18,6 +18,7 @@ class ApiClient {
     private enum Endpoint: String {
         case categoryList = "list.php?c=list"
         case filterByCategory = "filter.php?c="
+        case idLookup = "lookup.php?i="
 
      }
     
@@ -65,6 +66,12 @@ class ApiClient {
     
     func filterByCateogry<T: Decodable>(filter : String, completion: @escaping (Result<T, Error>) -> Void) {
         makeRequest(endpoint: .filterByCategory, filter: filter) { result in
+            completion(result)
+        }
+    }
+    
+    func fetchDrinkById<T: Decodable>(filter : String, completion: @escaping (Result<T, Error>) -> Void) {
+        makeRequest(endpoint: .idLookup, filter: filter) { result in
             completion(result)
         }
     }

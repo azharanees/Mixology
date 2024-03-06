@@ -77,8 +77,13 @@ struct HomeView: View {
                                ScrollView(.horizontal, showsIndicators: false) {
                                    HStack {
                                        ForEach(cocktails) { cocktail in
-                                           CardView(cocktail: cocktail)
-                                               .frame(width: 200) // Adjust the card width as needed
+                                           
+                                               CardView(cocktail: cocktail)
+                                                   .frame(width: 200)
+                                                           
+                                     
+                                           
+                                           
                                        }
                                    }
                                    .padding(.horizontal)
@@ -157,7 +162,7 @@ struct HomeView: View {
                    Label("Your Cocktails", systemImage: "wineglass")
                }
                VStack{
-                   FavoritesView()
+                   FavoritesView(viewModel: FavoritesViewModel(coreDataManager: CoreDataManager.shared))
                }.tabItem {
                    Label("Favourites", systemImage: "star.fill")
                }
@@ -227,55 +232,57 @@ struct CardView: View {
     var cocktail: Cocktail
 
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            // Load image from URL using AsyncImage and set it as the background of the card
-            AsyncImage(url: URL(string: cocktail.image)) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(height: 150) // Adjust the image height as needed
-                        .clipped()
-                        .cornerRadius(10) // Apply corner radius to the image
-                case .failure:
-                    // Handle error or show a placeholder image
-                    Image(systemName: "photo") // Placeholder image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(height: 150)
-                        .clipped()
-                        .cornerRadius(10)
-               default:
-                    ProgressView()
+        NavigationLink(destination: DetailsView(cocktailId: cocktail.id)) {
+            ZStack(alignment: .bottomLeading) {
+                // Load image from URL using AsyncImage and set it as the background of the card
+                AsyncImage(url: URL(string: cocktail.image)) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(height: 150) // Adjust the image height as needed
+                            .clipped()
+                            .cornerRadius(10) // Apply corner radius to the image
+                    case .failure:
+                        // Handle error or show a placeholder image
+                        Image(systemName: "photo") // Placeholder image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(height: 150)
+                            .clipped()
+                            .cornerRadius(10)
+                    default:
+                        ProgressView()
+                    }
                 }
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(cocktail.name)
+                        .font(.headline)
+                        .foregroundColor(.white) // Text color over the image background
+                        .padding(.horizontal, 10) // Padding for the text
+                    
+                    Text(cocktail.description)
+                        .font(.subheadline)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 10)
+                }
+                .padding(.vertical, 10) // Padding for the entire text backdrop
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.black.opacity(0.5)) // Semi-transparent black background
+                )
+                
             }
-
-            VStack(alignment: .leading, spacing: 8) {
-                           Text(cocktail.name)
-                               .font(.headline)
-                               .foregroundColor(.white) // Text color over the image background
-                               .padding(.horizontal, 10) // Padding for the text
-
-                           Text(cocktail.description)
-                               .font(.subheadline)
-                               .foregroundColor(.white)
-                               .padding(.horizontal, 10)
-                       }
-                       .padding(.vertical, 10) // Padding for the entire text backdrop
-                       .background(
-                           RoundedRectangle(cornerRadius: 10)
-                               .fill(Color.black.opacity(0.5)) // Semi-transparent black background
-                       )
-            
+            .frame(height: 150) // Adjust the total card height as needed
+            .background(Color.white) // Background color for the card itself
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            .padding(.vertical, 5)
         }
-        .frame(height: 150) // Adjust the total card height as needed
-        .background(Color.white) // Background color for the card itself
-        .cornerRadius(10)
-        .shadow(radius: 5)
-        .padding(.vertical, 5)
     }
 }
 

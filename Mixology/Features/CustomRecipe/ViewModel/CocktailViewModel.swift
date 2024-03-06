@@ -21,7 +21,7 @@ class CocktailViewModel: ObservableObject {
 
     
     private let coreDataManager: CoreDataManager
-    @Published var isDeleted: Bool = false // New property to track deletion state
+    @Published var isDeleted: Bool = false // New property to track 
 
 
     

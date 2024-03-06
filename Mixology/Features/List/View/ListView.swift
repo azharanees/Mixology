@@ -13,12 +13,12 @@ struct ListView: View {
     var cocktails: [Cocktail]
 
     var body: some View {
-        
-           NavigationView {
                List(cocktails) { cocktail in
                        CardView(cocktail: cocktail)
-                           .frame(height: 150) // Adjust the card height as needed
-               }
+                           .frame(height: 150)
+                   
+                      
+               
            }
        }
 }

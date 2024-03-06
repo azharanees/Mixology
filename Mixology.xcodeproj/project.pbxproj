@@ -18,6 +18,8 @@
 		0B2321702B60C662002458D3 /* MixologyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B23216F2B60C662002458D3 /* MixologyUITestsLaunchTests.swift */; };
 		0B2CDE5D2B967F470002AFF3 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE5C2B967F470002AFF3 /* FavouritesView.swift */; };
 		0B2CDE5F2B96810C0002AFF3 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE5E2B96810C0002AFF3 /* FavouritesViewModel.swift */; };
+		0B2CDE642B97E6830002AFF3 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE632B97E6830002AFF3 /* DetailsView.swift */; };
+		0B2CDE662B97E8910002AFF3 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE652B97E8910002AFF3 /* DetailsViewModel.swift */; };
 		0BE1FFCF2B7AEBE900A4823B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFCE2B7AEBE900A4823B /* HomeView.swift */; };
 		0BE1FFD12B7AEBF700A4823B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */; };
 		0BE1FFD32B7AEC0200A4823B /* CocktailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */; };
@@ -63,6 +65,8 @@
 		0B23216F2B60C662002458D3 /* MixologyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixologyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0B2CDE5C2B967F470002AFF3 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		0B2CDE5E2B96810C0002AFF3 /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
+		0B2CDE632B97E6830002AFF3 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		0B2CDE652B97E8910002AFF3 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		0BE1FFCE2B7AEBE900A4823B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailModel.swift; sourceTree = "<group>"; };
@@ -161,9 +165,35 @@
 			path = MixologyUITests;
 			sourceTree = "<group>";
 		};
+		0B2CDE602B97E6590002AFF3 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				0B2CDE622B97E6730002AFF3 /* ViewModel */,
+				0B2CDE612B97E66C0002AFF3 /* View */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		0B2CDE612B97E66C0002AFF3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B2CDE632B97E6830002AFF3 /* DetailsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0B2CDE622B97E6730002AFF3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B2CDE652B97E8910002AFF3 /* DetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0BE1FFC92B7AEBB900A4823B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				0B2CDE602B97E6590002AFF3 /* Details */,
 				C8BF75BB2B966541007F1335 /* CustomRecipe */,
 				0BE1FFDB2B7C504300A4823B /* List */,
 				0BE1FFCB2B7AEBC500A4823B /* Home */,
@@ -407,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B2321572B60C662002458D3 /* Persistence.swift in Sources */,
+				0B2CDE662B97E8910002AFF3 /* DetailsViewModel.swift in Sources */,
 				C8BF75C02B9665C0007F1335 /* CustomReceipeView.swift in Sources */,
 				0BE1FFD12B7AEBF700A4823B /* HomeViewModel.swift in Sources */,
 				C8BF75802B7BC7EE007F1335 /* CategoryListData.swift in Sources */,
@@ -417,6 +448,7 @@
 				C8BF75842B7BE3B0007F1335 /* CocktailListData.swift in Sources */,
 				0B2CDE5F2B96810C0002AFF3 /* FavouritesViewModel.swift in Sources */,
 				0BE1FFDF2B7C504300A4823B /* ListView.swift in Sources */,
+				0B2CDE642B97E6830002AFF3 /* DetailsView.swift in Sources */,
 				C8BF75C22B96664B007F1335 /* CocktailViewModel.swift in Sources */,
 				C8BF75C82B976832007F1335 /* CustomRecipeListView.swift in Sources */,
 				C8BF757E2B7AF299007F1335 /* APIService.swift in Sources */,

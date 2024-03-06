@@ -6,31 +6,36 @@
 //
 
 import Foundation
-
+import CoreData
 
 import SwiftUI
 
 class FavoritesViewModel: ObservableObject {
     @Published var favoriteCocktails: [Cocktail] = []
+    private let coreDataManager: CoreDataManager
 
-    // Function to toggle the favorite status of a cocktail
     func toggleFavorite(_ cocktail: Cocktail) {
         if let index = favoriteCocktails.firstIndex(where: { $0.id == cocktail.id }) {
-            // Cocktail is in favorites, remove it
             favoriteCocktails.remove(at: index)
         } else {
-            // Cocktail is not in favorites, add it
             favoriteCocktails.append(cocktail)
         }
     }
 
-    // Function to check if a cocktail is in favorites
     func isFavorite(_ cocktail: Cocktail) -> Bool {
         return favoriteCocktails.contains { $0.id == cocktail.id }
     }
+    
+    func fetchSavedCocktail()->[FavouriteRecipeModel]{
+        return coreDataManager.fetchFavRecipes()
+    }
+    
+    func deleteCocktail(withID id: UUID) {
+        coreDataManager.deleteCustomCocktail(withID: id)     
+    }
 
-    // Demo data - replace this with actual data fetching logic
-    init() {
+    init(coreDataManager: CoreDataManager) {
+        self.coreDataManager = coreDataManager
         let demoCocktails: [Cocktail] = [
             Cocktail(
                 id: "drink.idDrink",
@@ -42,10 +47,8 @@ class FavoritesViewModel: ObservableObject {
                 image: "drink.strDrinkThumb"
             ),
             Cocktail(id: "1", name: "Margarita", description: "Classic margarita", strength: "s", difficulty: "d", ingredients: "a",  image: "margarita_image"),
-            // Add more demo cocktails as needed
         ]
 
-        // Assume the first two cocktails are favorites initially
         favoriteCocktails = Array(demoCocktails.prefix(2))
     }
 }

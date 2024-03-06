@@ -78,4 +78,61 @@ class CoreDataManager {
           
       }
     
+    
+    
+    func saveFavCocktailRecipe(_ model: Cocktail) {
+        
+        let context = container.viewContext
+        let newObject = FavouriteRecipeModel(context: context)
+            
+            newObject.id = UUID()
+            newObject.name = model.name
+            newObject.desc = model.description
+            newObject.strength = model.strength
+            newObject.difficulty = model.difficulty
+            newObject.ingredients = model.ingredients
+            newObject.isFavourite = model.isFavourite
+            
+            do {
+                try context.save()
+                print("Data Saved")
+            } catch {
+                print("Failed to save context: \(error)")
+            }
+
+        
+
+    }
+    
+    func fetchFavRecipes() -> [FavouriteRecipeModel] {
+          let context = container.viewContext
+          let fetchRequest: NSFetchRequest<FavouriteRecipeModel> = FavouriteRecipeModel.fetchRequest()
+          
+          do {
+              let recipes = try context.fetch(fetchRequest)
+              return recipes
+          } catch {
+              print("Failed to fetch custom recipes: \(error)")
+              return []
+          }
+      }
+    
+    
+    func deleteFavCocktail(withID id: UUID) {
+          let context = container.viewContext
+          let fetchRequest: NSFetchRequest<FavouriteRecipeModel> = FavouriteRecipeModel.fetchRequest()
+          fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+          
+              do {
+                  let cocktails = try context.fetch(fetchRequest)
+                  for cocktail in cocktails {
+                      context.delete(cocktail)
+                  }
+                  try context.save()
+                  print("Cocktail deleted")
+              } catch {
+                  print("Failed to delete cocktail: \(error)")
+              }
+          
+      }
 }

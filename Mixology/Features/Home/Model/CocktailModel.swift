@@ -14,4 +14,5 @@ struct Cocktail: Identifiable, Decodable {
     var difficulty:String
     var ingredients:String
     var image : String
+    var isFavourite: Bool = false
 }
