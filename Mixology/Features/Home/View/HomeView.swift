@@ -152,7 +152,7 @@ struct HomeView: View {
                }
                
                VStack{
-                   CustomRecipeListView()
+                   CustomRecipeListView(viewModel: CocktailViewModel(coreDataManager: CoreDataManager.shared))
                }.tabItem {
                    Label("Your Cocktails", systemImage: "wineglass")
                }
@@ -166,13 +166,13 @@ struct HomeView: View {
 }
 struct IconButton: View {
     var item: IconButtonItem
-    var action: () -> Void // Closure to handle the action
+    var action: () -> Void
 
 
     var body: some View {
         Button(action: {
-            // Action for the icon button
-            self.action() // Call the action closure when the button is tapped
+            
+            self.action()
 
         }) {
             VStack {

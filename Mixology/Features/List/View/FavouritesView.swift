@@ -8,17 +8,14 @@
 import SwiftUI
 
 struct FavoritesView: View {
-    @ObservedObject var viewModel = FavoritesViewModel() // Assuming you have a FavoritesViewModel to manage favorite cocktails
+    @ObservedObject var viewModel = FavoritesViewModel()
     
     var body: some View {
         NavigationView {
             List(viewModel.favoriteCocktails) { cocktail in
                 
                 HStack {
-                    // Display the cocktail information (e.g., name, image, etc.)
                     Text(cocktail.name)
-                    // Add more views for other details
-                    
                 }
             }
             .navigationBarTitle("Favorites")

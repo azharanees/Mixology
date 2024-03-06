@@ -10,7 +10,14 @@ import SwiftUI
 
 struct CustomRecipeListView: View {
     
-    let viewModel = CocktailViewModel(coreDataManager: CoreDataManager.shared)
+    @ObservedObject var viewModel: CocktailViewModel
+
+      init(viewModel: CocktailViewModel) {
+          self.viewModel = viewModel
+      }
+    
+   // let viewModel = CocktailViewModel(coreDataManager: CoreDataManager.shared)
+
 
         var body: some View {
             NavigationView {
@@ -38,6 +45,6 @@ struct CustomRecipeListView: View {
 }
 
 #Preview {
-    CustomRecipeListView()
+    CustomRecipeListView(viewModel: CocktailViewModel(coreDataManager: CoreDataManager.shared))
 }
 
