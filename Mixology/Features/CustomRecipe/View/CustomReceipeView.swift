@@ -47,14 +47,20 @@ import SwiftUI
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.blue)
+                            .background(isSaveDisabled ? Color.gray : Color.blue)
                             .cornerRadius(12)
                     }
                     .padding()
+                    .disabled(isSaveDisabled)
                 }
                 .navigationTitle("New Cocktail")
             }
         }
+        
+        private var isSaveDisabled: Bool {
+             viewModel.name.isEmpty || viewModel.desc.isEmpty || viewModel.strength.isEmpty || viewModel.difficulty.isEmpty || viewModel.ingredients.isEmpty
+         }
+        
     }
 
     struct CustomRecipeCardView<Content: View>: View {
