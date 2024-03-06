@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 class CocktailViewModel: ObservableObject {
     
@@ -20,6 +21,9 @@ class CocktailViewModel: ObservableObject {
 
     
     private let coreDataManager: CoreDataManager
+    @Published var isDeleted: Bool = false // New property to track deletion state
+
+
     
     init(coreDataManager: CoreDataManager) {
         self.coreDataManager = coreDataManager
@@ -27,10 +31,27 @@ class CocktailViewModel: ObservableObject {
     
     func saveCocktail() {
         coreDataManager.saveCustomCocktailRecipe(self)
+        resetForm()
     }
     
     func fetchSavedCocktail()->[CustomRecipeModel]{
         return coreDataManager.fetchCustomRecipes()
+    }
+    
+    func deleteCocktail(withID id: UUID) {
+        coreDataManager.deleteCustomCocktail(withID: id)
+        isDeleted = true
+     
+    }
+    
+    func resetForm() {
+        name = ""
+        desc = ""
+        strength = ""
+        difficulty = ""
+        ingredients = ""
+        id = UUID()
+
     }
 
 }

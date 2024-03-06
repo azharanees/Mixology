@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 class CoreDataManager {
     static let shared = CoreDataManager()
@@ -57,4 +58,24 @@ class CoreDataManager {
               return []
           }
       }
+    
+    
+    func deleteCustomCocktail(withID id: UUID) {
+          let context = container.viewContext
+          let fetchRequest: NSFetchRequest<CustomRecipeModel> = CustomRecipeModel.fetchRequest()
+          fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+          
+              do {
+                  let cocktails = try context.fetch(fetchRequest)
+                  for cocktail in cocktails {
+                      context.delete(cocktail)
+                  }
+                  try context.save()
+                  print("Cocktail deleted")
+              } catch {
+                  print("Failed to delete cocktail: \(error)")
+              }
+          
+      }
+    
 }
