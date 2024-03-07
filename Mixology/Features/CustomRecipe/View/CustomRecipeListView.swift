@@ -12,9 +12,9 @@ struct CustomRecipeListView: View {
         NavigationView {
             List(viewModel.fetchSavedCocktail()) { cocktail in
                 if let unwrappedID = cocktail.id {
-                    CocktailListRow(cocktail: cocktail, onDelete: {
+                    CocktailListRow(cocktail: cocktail) {
                         viewModel.deleteCocktail(withID: unwrappedID)
-                    })
+                    }
                 }
             }
             .navigationTitle("Custom Cocktails")
@@ -38,6 +38,7 @@ struct CustomRecipeListView: View {
 struct CocktailListRow: View {
     let cocktail: CustomRecipeModel
     let onDelete: () -> Void
+    @State private var showAlert = false
 
     var body: some View {
         HStack {
@@ -55,10 +56,16 @@ struct CocktailListRow: View {
                 Spacer()
             }
             Spacer()
-            Button(action: onDelete) {
-                Image(systemName: "trash")
-                    .foregroundColor(.red)
-            }
+            Image(systemName: "trash")
+                .foregroundColor(.red)
+                .onTapGesture {
+                    showAlert = true
+                }
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Confirm Delete"), message: Text("Are you sure you want to delete the cocktail?"), primaryButton: .destructive(Text("Yes"), action: {
+                        onDelete()
+                    }), secondaryButton: .cancel())
+                }
         }
         .padding(8.0)
         .padding(.horizontal)
@@ -66,6 +73,8 @@ struct CocktailListRow: View {
         .background(Color.white)
     }
 }
+
+
 
 struct CustomRecipeListView_Previews: PreviewProvider {
     static var previews: some View {

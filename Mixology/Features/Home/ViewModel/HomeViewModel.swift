@@ -13,10 +13,14 @@ class HomeViewModel : ObservableObject {
     let apiManager = ApiClient.shared
     @Published var iconButtons: [IconButtonItem] = []
     @Published var cocktailDetails: [Cocktail] = []
+    @Published var randomCocktailDetails: [Cocktail] = []
+
+    
 
     
     init() {
         fetchIconButtons()
+        getRandomDrinks()
     }
     
     func fetchIconButtons() {
@@ -58,6 +62,30 @@ class HomeViewModel : ObservableObject {
              }
          }
      }
+    
+    func getRandomDrinks(){
+        apiManager.fetchByRandom { (result: Result<DrinkList, Error>) in
+            switch result {
+            case .success(let randomListData):
+                let cocktailCards = randomListData.drinks.map { drink in
+                    Cocktail(
+                        id: drink.idDrink,
+                        name: drink.strDrink,
+                        description: "",
+                        strength: "",
+                        difficulty: "",
+                        ingredients: "",
+                        image: drink.strDrinkThumb
+                    )
+                }
+                DispatchQueue.main.async {
+                    self.randomCocktailDetails = cocktailCards // Update cocktails property
+                }
+            case .failure(let error):
+                print("Error fetching category list: \(error.localizedDescription)")
+            }
+        }
+    }
     
 
 

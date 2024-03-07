@@ -19,6 +19,7 @@ class ApiClient {
         case categoryList = "list.php?c=list"
         case filterByCategory = "filter.php?c="
         case idLookup = "lookup.php?i="
+        case random = "random.php"
 
      }
     
@@ -75,6 +76,13 @@ class ApiClient {
             completion(result)
         }
     }
+    
+    func fetchByRandom<T: Decodable>(completion: @escaping (Result<T, Error>) -> Void) {
+        makeRequest(endpoint: .random) { result in
+            completion(result)
+        }
+    }
+
 
     
     
