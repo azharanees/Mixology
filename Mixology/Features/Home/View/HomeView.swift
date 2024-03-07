@@ -147,7 +147,8 @@ struct HomeView: View {
                                    }
                                    .padding(.horizontal)
                                }
-                           } .padding(.top,15)
+                           }
+                           .padding(.top,15)
                        }
                        
                    }
