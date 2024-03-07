@@ -20,6 +20,7 @@ struct HomeView: View {
        var body: some View {
 
            let cocktails = viewModel.cocktailDetails
+           let recommendCocktails = viewModel.randomCocktailDetails
            TabView {
                NavigationView {
                    VStack {
@@ -105,8 +106,8 @@ struct HomeView: View {
 
                                ScrollView(.horizontal, showsIndicators: false) {
                                    HStack {
-                                       ForEach(cocktails) { cocktail in
-                                           CardView(cocktail: cocktail)
+                                       ForEach(recommendCocktails) { cocktail in
+                                           CardView(cocktail: cocktail, singleItem: true)
                                                .frame(width: 200) // Adjust the card width as needed
                                        }
                                    }
@@ -231,11 +232,11 @@ struct SearchBar: View {
 
 struct CardView: View {
     var cocktail: Cocktail
+    var singleItem : Bool = false
 
     var body: some View {
         NavigationLink(destination: DetailsView(cocktailId: cocktail.id)) {
             ZStack(alignment: .bottomLeading) {
-                // Load image from URL using AsyncImage and set it as the background of the card
                 AsyncImage(url: URL(string: cocktail.image)) { phase in
                     switch phase {
                     case .empty:
@@ -283,6 +284,7 @@ struct CardView: View {
             .cornerRadius(10)
             .shadow(radius: 5)
             .padding(.vertical, 5)
+            .frame(width: singleItem ? 500 : nil) // Conditional modifier for frame width
         }
     }
 }
