@@ -20,6 +20,13 @@
 		0B2CDE5F2B96810C0002AFF3 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE5E2B96810C0002AFF3 /* FavouritesViewModel.swift */; };
 		0B2CDE642B97E6830002AFF3 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE632B97E6830002AFF3 /* DetailsView.swift */; };
 		0B2CDE662B97E8910002AFF3 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE652B97E8910002AFF3 /* DetailsViewModel.swift */; };
+		0B3158AA2BB21BFB00B96D06 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 0B3158A92BB21BFB00B96D06 /* GooglePlaces */; };
+		0B3158AE2BB492C500B96D06 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3158AD2BB492C500B96D06 /* LocationManager.swift */; };
+		0B3158B22BB4967600B96D06 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3158B12BB4967600B96D06 /* MapView.swift */; };
+		0B3158B52BB49AFD00B96D06 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3158B42BB49AFD00B96D06 /* MapViewModel.swift */; };
+		0B3158B82BB49DF500B96D06 /* LandmarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3158B72BB49DF500B96D06 /* LandmarkModel.swift */; };
+		0B3158BA2BB49E3B00B96D06 /* LandmarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3158B92BB49E3B00B96D06 /* LandmarkAnnotation.swift */; };
+		0B3158BC2BB49E6F00B96D06 /* PlacesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3158BB2BB49E6F00B96D06 /* PlacesListView.swift */; };
 		0BE1FFCF2B7AEBE900A4823B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFCE2B7AEBE900A4823B /* HomeView.swift */; };
 		0BE1FFD12B7AEBF700A4823B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */; };
 		0BE1FFD32B7AEC0200A4823B /* CocktailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */; };
@@ -70,6 +77,12 @@
 		0B2CDE5E2B96810C0002AFF3 /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		0B2CDE632B97E6830002AFF3 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		0B2CDE652B97E8910002AFF3 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		0B3158AD2BB492C500B96D06 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		0B3158B12BB4967600B96D06 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		0B3158B42BB49AFD00B96D06 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		0B3158B72BB49DF500B96D06 /* LandmarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkModel.swift; sourceTree = "<group>"; };
+		0B3158B92BB49E3B00B96D06 /* LandmarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkAnnotation.swift; sourceTree = "<group>"; };
+		0B3158BB2BB49E6F00B96D06 /* PlacesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListView.swift; sourceTree = "<group>"; };
 		0BE1FFCE2B7AEBE900A4823B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0BE1FFD02B7AEBF700A4823B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0BE1FFD22B7AEC0200A4823B /* CocktailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailModel.swift; sourceTree = "<group>"; };
@@ -91,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B3158AA2BB21BFB00B96D06 /* GooglePlaces in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,10 +210,47 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		0B3158AF2BB4965300B96D06 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				0B3158B62BB49DD700B96D06 /* Model */,
+				0B3158B32BB49AEA00B96D06 /* ViewModel */,
+				0B3158B02BB4966100B96D06 /* View */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		0B3158B02BB4966100B96D06 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B3158B12BB4967600B96D06 /* MapView.swift */,
+				0B3158BB2BB49E6F00B96D06 /* PlacesListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0B3158B32BB49AEA00B96D06 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B3158B42BB49AFD00B96D06 /* MapViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B3158B62BB49DD700B96D06 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B3158B72BB49DF500B96D06 /* LandmarkModel.swift */,
+				0B3158B92BB49E3B00B96D06 /* LandmarkAnnotation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0BE1FFC92B7AEBB900A4823B /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				C841B60A2BB2201500019C04 /* Settings */,
+				0B3158AF2BB4965300B96D06 /* Map */,
 				0B2CDE602B97E6590002AFF3 /* Details */,
 				C8BF75BB2B966541007F1335 /* CustomRecipe */,
 				0BE1FFDB2B7C504300A4823B /* List */,
@@ -309,6 +360,7 @@
 				C8BF757D2B7AF299007F1335 /* APIService.swift */,
 				C8BF75C32B96689D007F1335 /* CoreDataManager.swift */,
 				C841B61C2BB4553E00019C04 /* NotificationManager.swift */,
+				0B3158AD2BB492C500B96D06 /* LocationManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -363,6 +415,9 @@
 			dependencies = (
 			);
 			name = Mixology;
+			packageProductDependencies = (
+				0B3158A92BB21BFB00B96D06 /* GooglePlaces */,
+			);
 			productName = Mixology;
 			productReference = 0B23214A2B60C661002458D3 /* Mixology.app */;
 			productType = "com.apple.product-type.application";
@@ -435,6 +490,9 @@
 				Base,
 			);
 			mainGroup = 0B2321412B60C661002458D3;
+			packageReferences = (
+				0B3158A82BB21BFB00B96D06 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
+			);
 			productRefGroup = 0B23214B2B60C661002458D3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -478,8 +536,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B2321572B60C662002458D3 /* Persistence.swift in Sources */,
+				0B3158B82BB49DF500B96D06 /* LandmarkModel.swift in Sources */,
 				0B2CDE662B97E8910002AFF3 /* DetailsViewModel.swift in Sources */,
 				C8BF75C02B9665C0007F1335 /* CustomReceipeView.swift in Sources */,
+				0B3158B22BB4967600B96D06 /* MapView.swift in Sources */,
 				0BE1FFD12B7AEBF700A4823B /* HomeViewModel.swift in Sources */,
 				C8BF75802B7BC7EE007F1335 /* CategoryListData.swift in Sources */,
 				C841B60F2BB220B300019C04 /* SettingsView.swift in Sources */,
@@ -488,6 +548,9 @@
 				0B23215A2B60C662002458D3 /* Mixology.xcdatamodeld in Sources */,
 				0B2321502B60C661002458D3 /* ContentView.swift in Sources */,
 				0BE1FFCF2B7AEBE900A4823B /* HomeView.swift in Sources */,
+				0B3158BC2BB49E6F00B96D06 /* PlacesListView.swift in Sources */,
+				0B3158BA2BB49E3B00B96D06 /* LandmarkAnnotation.swift in Sources */,
+				0B3158B52BB49AFD00B96D06 /* MapViewModel.swift in Sources */,
 				C8BF75842B7BE3B0007F1335 /* CocktailListData.swift in Sources */,
 				0B2CDE5F2B96810C0002AFF3 /* FavouritesViewModel.swift in Sources */,
 				0BE1FFDF2B7C504300A4823B /* ListView.swift in Sources */,
@@ -495,6 +558,7 @@
 				C8BF75C22B96664B007F1335 /* CocktailViewModel.swift in Sources */,
 				C8BF75C82B976832007F1335 /* CustomRecipeListView.swift in Sources */,
 				C8BF757E2B7AF299007F1335 /* APIService.swift in Sources */,
+				0B3158AE2BB492C500B96D06 /* LocationManager.swift in Sources */,
 				C8BF75C42B96689D007F1335 /* CoreDataManager.swift in Sources */,
 				0B2CDE5D2B967F470002AFF3 /* FavouritesView.swift in Sources */,
 				0B23214E2B60C661002458D3 /* MixologyApp.swift in Sources */,
@@ -664,6 +728,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Mixology/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We want to show the user bars around him";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -692,6 +757,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Mixology/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We want to show the user bars around him";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -822,6 +888,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0B3158A82BB21BFB00B96D06 /* XCRemoteSwiftPackageReference "ios-places-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-places-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0B3158A92BB21BFB00B96D06 /* GooglePlaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B3158A82BB21BFB00B96D06 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlaces;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0B2321582B60C662002458D3 /* Mixology.xcdatamodeld */ = {

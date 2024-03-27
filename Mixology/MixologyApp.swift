@@ -7,11 +7,16 @@
 
 import SwiftUI
 
+
+
+
 @main
 struct MixologyApp: App {
+
     let persistenceController = PersistenceController.shared
     let notificationManager = NotificationManager()
     let notificationDelegate = NotificationDelegate()
+
 
     var body: some Scene {
         WindowGroup {
@@ -35,3 +40,4 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         completionHandler([.alert, .sound])
     }
 }
+

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 
 struct HomeView: View {
@@ -15,7 +16,42 @@ struct HomeView: View {
     @State private var selectedSortCriteria: HomeViewModel.SortCriteria  = .name
     @State private var isPickerExpanded = false
     @State private var isNavigateToListView = false
+    @State private var landmarks: [Landmark] = [Landmark]()
+    @State private var tapped: Bool = false
+    @ObservedObject var locationManager = LocationManager()
 
+    
+    private func getNearByLandmarks() {
+        
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = "bar"
+        
+        let search = MKLocalSearch(request: request)
+        search.start { (response, error) in
+            if let response = response {
+                
+                let mapItems = response.mapItems
+                self.landmarks = mapItems.map {
+                    Landmark(placemark: $0.placemark)
+                }
+                
+            }
+            
+        }
+        
+    }
+    func calculateOffset() -> CGFloat {
+            
+            if self.landmarks.count > 0 && !self.tapped {
+                return UIScreen.main.bounds.size.height - UIScreen.main.bounds.size.height / 4
+            }
+            else if self.tapped {
+                return 100
+            } else {
+                return UIScreen.main.bounds.size.height
+            }
+        }
+    
 
 
        var body: some View {
@@ -172,6 +208,19 @@ struct HomeView: View {
                    SettingsView(viewModel: SettingsViewModel())
                }.tabItem {
                    Label("Settings", systemImage: "gear")
+               }
+               VStack{
+                   MapView(landmarks: landmarks).onAppear{
+                       self.getNearByLandmarks()
+                   }
+                   PlacesListView(landmarks: self.landmarks) {
+                               // on tap
+                               self.tapped.toggle()
+                           }.animation(.spring())
+                    
+                        
+               }.tabItem {
+                   Label("Places", systemImage: "map")
                }
            }
        }

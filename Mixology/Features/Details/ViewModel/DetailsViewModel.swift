@@ -28,7 +28,6 @@ class DetailsViewModel : ObservableObject {
             (result:Result<DrinkList, Error>) in
             switch result {
             case .success(let cocktailList):
-                print(cocktailList)
                 let cocktailCards = cocktailList.drinks.map { drink in
                     Cocktail(
                         id: drink.idDrink,
