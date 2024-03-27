@@ -7,9 +7,14 @@
 
 import SwiftUI
 
+
+
+
 @main
 struct MixologyApp: App {
+
     let persistenceController = PersistenceController.shared
+
 
     var body: some Scene {
         WindowGroup {
@@ -20,3 +25,6 @@ struct MixologyApp: App {
         }
     }
 }
+
+
+

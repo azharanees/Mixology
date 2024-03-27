@@ -7,8 +7,8 @@
 
 import Foundation
 
-
 class HomeViewModel : ObservableObject {
+
     
     let apiManager = ApiClient.shared
     @Published var iconButtons: [IconButtonItem] = []
@@ -16,11 +16,11 @@ class HomeViewModel : ObservableObject {
     @Published var randomCocktailDetails: [Cocktail] = []
 
     
-
     
     init() {
         fetchIconButtons()
         getRandomDrinks()
+
     }
     
     func fetchIconButtons() {

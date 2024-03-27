@@ -13,7 +13,6 @@ struct DetailsView: View {
     var cocktailId = "1"
 
     init(cocktailId: String) {
-        print("cocktailID \(cocktailId)")
         self.cocktailId = cocktailId
         viewModel = DetailsViewModel()
     }
