@@ -17,8 +17,8 @@ struct HomeView: View {
     @State private var isNavigateToListView = false
 
 
-       var body: some View {
 
+       var body: some View {
            let cocktails = viewModel.cocktailDetails
            let recommendCocktails = viewModel.randomCocktailDetails
            TabView {
@@ -167,6 +167,11 @@ struct HomeView: View {
                    FavoritesView(viewModel: FavoritesViewModel(coreDataManager: CoreDataManager.shared))
                }.tabItem {
                    Label("Favourites", systemImage: "star.fill")
+               }
+               VStack{
+                   SettingsView(viewModel: SettingsViewModel())
+               }.tabItem {
+                   Label("Settings", systemImage: "gear")
                }
            }
        }

@@ -135,4 +135,56 @@ class CoreDataManager {
               }
           
       }
+    
+    func fetchSettings() -> [Settings] {
+        let context = container.viewContext
+        let request: NSFetchRequest<Settings> = Settings.fetchRequest()
+        do {
+            let settings = try context.fetch(request)
+            return settings
+        } catch {
+            print("Failed to fetch settings: \(error)")
+            return []
+        }
+
+    }
+    
+    func saveSettings(_ model: SettingsViewModel){
+        let context = container.viewContext
+        let newObject = Settings(context: context)
+        newObject.enableNotification = model.enableNotifications
+        newObject.dateTime = model.selectedDateTime
+        saveContext(viewContext: context)
+
+    }
+    
+    func updateSettings(_ model: SettingsViewModel) {
+        let context = container.viewContext
+        let fetchRequest: NSFetchRequest<Settings> = Settings.fetchRequest()
+        do {
+            let settings = try context.fetch(fetchRequest)
+            if let existingSettings = settings.first {
+                existingSettings.enableNotification = model.enableNotifications
+                existingSettings.dateTime = model.selectedDateTime
+                saveContext(viewContext: context)
+                
+            } else {
+                saveSettings(model)
+            }
+        } catch {
+            fatalError("Failed to update settings: \(error)")
+        }
+    }
+    
+    func saveContext(viewContext: NSManagedObjectContext) {
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                fatalError("Failed to save Core Data context: \(error)")
+            }
+        }
+    }
+
+    
 }
