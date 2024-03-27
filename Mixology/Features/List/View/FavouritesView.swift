@@ -18,12 +18,13 @@ struct FavoritesView: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.fetchSavedCocktail()) { cocktail in
-                if let unwrappedID = cocktail.id {
+            List(viewModel.favoriteCocktails) { cocktail in
+                
                     FavListRow(cocktail: cocktail, onDelete: {
-                        viewModel.deleteCocktail(withID: unwrappedID)
                     })
-                }
+                
+            }.onAppear{
+                viewModel.fetchSavedCocktail2()
             }
             .navigationTitle("Favourites")
             
@@ -33,34 +34,37 @@ struct FavoritesView: View {
 
 
 struct FavListRow: View {
-    let cocktail: FavouriteRecipeModel
+    let cocktail: Cocktail
     let onDelete: () -> Void
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Spacer()
-                Text(cocktail.name ?? "")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .lineLimit(1)
-                Text(cocktail.desc ?? "")
-                    .font(.caption)
-                    .fontWeight(.light)
-                    .lineLimit(1)
-                    .padding(.top, 3.0)
-                Spacer()
-            }
-            Spacer()
-            Button(action: onDelete) {
+        
+        NavigationLink(destination:DetailsView(cocktail:Cocktail(
+            id: cocktail.id,
+            name: "drink.strDrink",
+            description: cocktail.description,
+            strength: "",
+            difficulty: "",
+            ingredients: "",
+            image: "drink.strDrinkThumb"
+        )
+)) {
+            HStack {
                 Image(systemName: "heart.fill")
                     .foregroundColor(.red)
+                VStack(alignment: .leading) {
+                    Text(cocktail.name ?? "")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .lineLimit(1)
+            
+                }
+
             }
-        }
-        .padding(8.0)
-        .padding(.horizontal)
-        .listRowInsets(EdgeInsets())
+            .padding(10.0)
+            .listRowInsets(EdgeInsets())
         .background(Color.white)
+        }
     }
 }
 

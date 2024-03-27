@@ -10,10 +10,9 @@ import SwiftUI
 struct DetailsView: View {
     
     @ObservedObject var viewModel:DetailsViewModel
-    var cocktailId = "1"
-
-    init(cocktailId: String) {
-        self.cocktailId = cocktailId
+    var cocktail :Cocktail
+    init(cocktail: Cocktail) {
+        self.cocktail = cocktail
         viewModel = DetailsViewModel()
     }
 
@@ -56,7 +55,7 @@ struct DetailsView: View {
 
             Button(action: {
                           // Handle adding to favorites
-                viewModel.addToFavourite()
+                viewModel.toggleFavorite()
                       }) {
                           Image(systemName: viewModel.cocktailDetails.isFavourite ? "heart.fill" : "heart")
                               .foregroundColor(.red)
@@ -65,7 +64,7 @@ struct DetailsView: View {
                       .padding()
             Spacer()
         }.onAppear {
-            viewModel.fetchDetails(drinkId: cocktailId)
+            viewModel.fetchDetails(drinkId: cocktail.id)
         }
     }
 }
@@ -73,5 +72,14 @@ struct DetailsView: View {
 
 
 #Preview {
-    DetailsView(cocktailId: "1")
+    DetailsView(cocktail: Cocktail(
+        id: "1",
+        name: "drink.strDrink",
+        description: "",
+        strength: "",
+        difficulty: "",
+        ingredients: "",
+        image: "drink.strDrinkThumb"
+    )
+)
 }

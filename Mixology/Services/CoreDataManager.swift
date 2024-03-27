@@ -85,7 +85,7 @@ class CoreDataManager {
         let context = container.viewContext
         let newObject = FavouriteRecipeModel(context: context)
             
-            newObject.id = UUID()
+        newObject.id = model.id
             newObject.name = model.name
             newObject.desc = model.description
             newObject.strength = model.strength
@@ -118,21 +118,36 @@ class CoreDataManager {
       }
     
     
-    func deleteFavCocktail(withID id: UUID) {
-          let context = container.viewContext
-          let fetchRequest: NSFetchRequest<FavouriteRecipeModel> = FavouriteRecipeModel.fetchRequest()
-          fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-          
-              do {
-                  let cocktails = try context.fetch(fetchRequest)
-                  for cocktail in cocktails {
-                      context.delete(cocktail)
-                  }
-                  try context.save()
-                  print("Cocktail deleted")
-              } catch {
-                  print("Failed to delete cocktail: \(error)")
-              }
-          
-      }
+    func deleteFavCocktail(_ model: Cocktail) {
+        let context = container.viewContext
+        let fetchRequest: NSFetchRequest<FavouriteRecipeModel> = FavouriteRecipeModel.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", model.name)
+        
+        do {
+            let cocktails = try context.fetch(fetchRequest)
+            for cocktail in cocktails {
+                context.delete(cocktail)
+            }
+            try context.save()
+            print("Cocktail deleted")
+        } catch {
+            print("Failed to delete cocktail: \(error)")
+        }
+    }
+    
+    func isCocktailFavourite(_ name: String) -> Bool {
+        let context = container.viewContext
+        let fetchRequest: NSFetchRequest<FavouriteRecipeModel> = FavouriteRecipeModel.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        
+        do {
+            let count = try context.count(for: fetchRequest)
+            return count > 0
+        } catch {
+            print("Error checking if cocktail is favorite: \(error)")
+            return false
+        }
+    }
+
+
 }

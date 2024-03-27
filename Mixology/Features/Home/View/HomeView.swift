@@ -285,7 +285,7 @@ struct CardView: View {
     var singleItem : Bool = false
 
     var body: some View {
-        NavigationLink(destination: DetailsView(cocktailId: cocktail.id)) {
+        NavigationLink(destination: DetailsView(cocktail: cocktail)) {
             ZStack(alignment: .bottomLeading) {
                 AsyncImage(url: URL(string: cocktail.image)) { phase in
                     switch phase {

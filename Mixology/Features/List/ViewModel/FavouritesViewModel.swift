@@ -12,6 +12,7 @@ import SwiftUI
 
 class FavoritesViewModel: ObservableObject {
     @Published var favoriteCocktails: [Cocktail] = []
+    
     private let coreDataManager: CoreDataManager
 
     func toggleFavorite(_ cocktail: Cocktail) {
@@ -27,9 +28,24 @@ class FavoritesViewModel: ObservableObject {
     }
     
     func fetchSavedCocktail()->[FavouriteRecipeModel]{
+        
         return coreDataManager.fetchFavRecipes()
     }
-    
+    func fetchSavedCocktail2()->Void{
+        
+        favoriteCocktails = []
+        
+        coreDataManager.fetchFavRecipes().forEach { drink in
+            favoriteCocktails.append(Cocktail(
+                id: drink.id!, name: drink.name!, description: drink.description, strength: drink.strength!, difficulty: drink.difficulty!, ingredients: drink.ingredients!, image: drink.name!
+            
+            ))
+        }
+
+      
+        
+        }
+
     func deleteCocktail(withID id: UUID) {
         coreDataManager.deleteCustomCocktail(withID: id)     
     }
