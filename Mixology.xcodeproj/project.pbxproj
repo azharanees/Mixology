@@ -20,7 +20,6 @@
 		0B2CDE5F2B96810C0002AFF3 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE5E2B96810C0002AFF3 /* FavouritesViewModel.swift */; };
 		0B2CDE642B97E6830002AFF3 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE632B97E6830002AFF3 /* DetailsView.swift */; };
 		0B2CDE662B97E8910002AFF3 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CDE652B97E8910002AFF3 /* DetailsViewModel.swift */; };
-		0B3158AA2BB21BFB00B96D06 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 0B3158A92BB21BFB00B96D06 /* GooglePlaces */; };
 		0B3158AE2BB492C500B96D06 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3158AD2BB492C500B96D06 /* LocationManager.swift */; };
 		0B3158B22BB4967600B96D06 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3158B12BB4967600B96D06 /* MapView.swift */; };
 		0B3158B52BB49AFD00B96D06 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3158B42BB49AFD00B96D06 /* MapViewModel.swift */; };
@@ -104,7 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B3158AA2BB21BFB00B96D06 /* GooglePlaces in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +414,6 @@
 			);
 			name = Mixology;
 			packageProductDependencies = (
-				0B3158A92BB21BFB00B96D06 /* GooglePlaces */,
 			);
 			productName = Mixology;
 			productReference = 0B23214A2B60C661002458D3 /* Mixology.app */;
@@ -491,7 +488,6 @@
 			);
 			mainGroup = 0B2321412B60C661002458D3;
 			packageReferences = (
-				0B3158A82BB21BFB00B96D06 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
 			);
 			productRefGroup = 0B23214B2B60C661002458D3 /* Products */;
 			projectDirPath = "";
@@ -888,25 +884,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		0B3158A82BB21BFB00B96D06 /* XCRemoteSwiftPackageReference "ios-places-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googlemaps/ios-places-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.3.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		0B3158A92BB21BFB00B96D06 /* GooglePlaces */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0B3158A82BB21BFB00B96D06 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
-			productName = GooglePlaces;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0B2321582B60C662002458D3 /* Mixology.xcdatamodeld */ = {
