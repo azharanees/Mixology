@@ -53,8 +53,8 @@ struct HomeView: View {
         }
     
 
-       var body: some View {
 
+       var body: some View {
            let cocktails = viewModel.cocktailDetails
            let recommendCocktails = viewModel.randomCocktailDetails
            TabView {
@@ -205,7 +205,11 @@ struct HomeView: View {
                    Label("Favourites", systemImage: "star.fill")
                }
                VStack{
-
+                   SettingsView(viewModel: SettingsViewModel())
+               }.tabItem {
+                   Label("Settings", systemImage: "gear")
+               }
+               VStack{
                    MapView(landmarks: landmarks).onAppear{
                        self.getNearByLandmarks()
                    }
