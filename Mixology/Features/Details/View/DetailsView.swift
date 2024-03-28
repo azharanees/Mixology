@@ -24,7 +24,7 @@ struct DetailsView: View {
             Text(viewModel.cocktailDetails.name)
                 .font(.title)
                 .padding()
-
+            
             AsyncImage(url: URL(string: viewModel.cocktailDetails.image)) { phase in
                 switch phase {
                 case .empty:
@@ -48,21 +48,35 @@ struct DetailsView: View {
                     ProgressView()
                 }
             }
-
+            
             Text(viewModel.cocktailDetails.description)
                 .font(.body)
                 .padding()
-
+            
             Button(action: {
-                          // Handle adding to favorites
+                // Handle adding to favorites
                 viewModel.toggleFavorite()
-                      }) {
-                          Image(systemName: viewModel.cocktailDetails.isFavourite ? "heart.fill" : "heart")
-                              .foregroundColor(.red)
-                              .font(.title)
-                      }
-                      .padding()
-            Spacer()
+            }) {
+                Image(systemName: viewModel.cocktailDetails.isFavourite ? "heart.fill" : "heart")
+                    .foregroundColor(.red)
+                    .font(.title)
+            }
+            .padding()
+            
+            Menu {
+                 ShareLink(
+                     item: viewModel.cocktailDetails.name,
+                     subject: Text("Check out this cocktail!"),
+                     message: Text("\(viewModel.cocktailDetails.name) :- \(viewModel.cocktailDetails.description)"),
+                     preview: SharePreview("\(viewModel.cocktailDetails.name)", image: viewModel.cocktailDetails.image)
+                 )
+             } label: {
+                 Image(systemName: "square.and.arrow.up")
+                     .foregroundColor(.blue)
+                     .font(.title)
+             }
+
+             Spacer()
         }.onAppear {
             viewModel.fetchDetails(drinkId: cocktail.id)
         }
