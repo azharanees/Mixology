@@ -25,7 +25,7 @@ class CoreDataManager {
     }
 
 
-    func saveCustomCocktailRecipe(_ model: CocktailViewModel) {
+    func saveCustomCocktailRecipe(_ model: CocktailViewModel) -> Bool {
         
         let context = container.viewContext
         let newObject = CustomRecipeModel(context: context)
@@ -40,8 +40,10 @@ class CoreDataManager {
         
         do {
             try context.save()
+            return true;
             print("Data Saved")
         } catch {
+            return false
             print("Failed to save context: \(error)")
         }
     }

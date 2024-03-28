@@ -18,6 +18,9 @@ class CocktailViewModel: ObservableObject {
     @Published var ingredients = ""
     @Published var isFavourite = false
     @Published var id = UUID()
+    
+    @Published var savedCocktail: Bool?
+
 
     
     private let coreDataManager: CoreDataManager
@@ -30,8 +33,9 @@ class CocktailViewModel: ObservableObject {
     }
     
     func saveCocktail() {
-        coreDataManager.saveCustomCocktailRecipe(self)
+        let isSaved = coreDataManager.saveCustomCocktailRecipe(self)
         resetForm()
+        savedCocktail = isSaved
     }
     
     func fetchSavedCocktail()->[CustomRecipeModel]{
@@ -42,6 +46,17 @@ class CocktailViewModel: ObservableObject {
         coreDataManager.deleteCustomCocktail(withID: id)
         isDeleted = true
      
+    }
+    
+    func validateInputs() -> Bool {
+        guard let strengthValue = Double(strength), strengthValue >= 0 else {
+            return false
+        }
+        return !name.isEmpty && !desc.isEmpty 
+    }
+    
+    private func isNumeric(_ value: String) -> Bool {
+        return Double(value) != nil
     }
     
     func resetForm() {
