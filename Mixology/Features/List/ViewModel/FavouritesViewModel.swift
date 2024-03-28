@@ -41,10 +41,8 @@ class FavoritesViewModel: ObservableObject {
             
             ))
         }
-
-      
         
-        }
+    }
 
     func deleteCocktail(withID id: UUID) {
         coreDataManager.deleteCustomCocktail(withID: id)     
@@ -52,19 +50,8 @@ class FavoritesViewModel: ObservableObject {
 
     init(coreDataManager: CoreDataManager) {
         self.coreDataManager = coreDataManager
-        let demoCocktails: [Cocktail] = [
-            Cocktail(
-                id: "drink.idDrink",
-                name: "drink.strDrink",
-                description: "",
-                strength: "",
-                difficulty: "",
-                ingredients: "",
-                image: "drink.strDrinkThumb"
-            ),
-            Cocktail(id: "1", name: "Margarita", description: "Classic margarita", strength: "s", difficulty: "d", ingredients: "a",  image: "margarita_image"),
-        ]
+        //let demoCocktails: [Cocktail] = []
 
-        favoriteCocktails = Array(demoCocktails.prefix(2))
+        //favoriteCocktails = Array(demoCocktails.prefix(2))
     }
 }
