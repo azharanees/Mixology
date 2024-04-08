@@ -31,10 +31,14 @@ class ApiClient {
     private func makeRequest<T: Decodable>(endpoint: Endpoint, filter: String?=nil, completion: @escaping (Result<T, Error>) -> Void) {
         
         var urlString = baseUrl.absoluteString + "/" + endpoint.rawValue
-        
+
+        // If a filter is provided, encode and append it
         if let filter = filter {
-              urlString += filter
-          }
+          let encodedFilter = filter.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+          urlString += "\(encodedFilter)"
+        }
+
+        print(urlString)
         
         guard let url = URL(string: urlString) else {
             fatalError("Invalid URL")

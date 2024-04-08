@@ -168,6 +168,7 @@ struct HomeView: View {
                                }
                            }.padding(.top,15)
                            
+                           /*
                            VStack(alignment: .leading) {
                                Text("Underrated")
                                              .font(.headline)
@@ -186,6 +187,7 @@ struct HomeView: View {
                                }
                            }
                            .padding(.top,15)
+                           */
                        }
                        
                    }
