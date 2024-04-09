@@ -105,7 +105,7 @@ class HomeViewModel : ObservableObject {
         case "Cocktail":
             return "wineglass.fill"
         case "Shake":
-            return "waterbottle.fill"
+            return "square.3.layers.3d"
         case "Other / Unknown":
             return "questionmark.circle"
         case "Cocoa":
@@ -115,11 +115,11 @@ class HomeViewModel : ObservableObject {
         case "Coffee / Tea":
             return "mug"
         case "Homemade Liqueur":
-            return "waterbottle.fill"
+            return "homepod.2.fill"
         case "Punch / Party Drink":
             return "takeoutbag.and.cup.and.straw.fill"
         case "Beer":
-            return "waterbottle"
+            return "homepod.fill"
         case "Soft Drink":
             return "wineglass.fill"
         default:
