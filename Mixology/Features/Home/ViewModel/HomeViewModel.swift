@@ -14,6 +14,7 @@ class HomeViewModel : ObservableObject {
     @Published var iconButtons: [IconButtonItem] = []
     @Published var cocktailDetails: [Cocktail] = []
     @Published var randomCocktailDetails: [Cocktail] = []
+    var searchCache = [String: DrinkList]() // Dictionary for cached data
 
     
     
@@ -40,28 +41,40 @@ class HomeViewModel : ObservableObject {
     }
     
     func filterByCategory(filter: String) {
+        
+        if let cachedList = searchCache[filter] {
+            print(cachedList)
+            self.populateDrinks(cocktailList: cachedList)
+           return
+         }
          apiManager.filterByCateogry(filter: filter) { (result: Result<DrinkList, Error>) in
              switch result {
              case .success(let cocktailList):
-                 let cocktailCards = cocktailList.drinks.map { drink in
-                     Cocktail(
-                         id: drink.idDrink,
-                         name: drink.strDrink,
-                         description: "",
-                         strength: "",
-                         difficulty: "",
-                         ingredients: "",
-                         image: drink.strDrinkThumb
-                     )
-                 }
-                 DispatchQueue.main.async {
-                     self.cocktailDetails = cocktailCards // Update cocktails property
-                 }
+                 self.searchCache[filter] = cocktailList // Store fetched data in cache
+                 self.populateDrinks(cocktailList: cocktailList)
              case .failure(let error):
                  print("Error fetching category list: \(error.localizedDescription)")
              }
          }
      }
+    
+    func populateDrinks(cocktailList : DrinkList){
+        let cocktailCards = cocktailList.drinks.map { drink in
+            Cocktail(
+                id: drink.idDrink,
+                name: drink.strDrink,
+                description: "",
+                strength: "",
+                difficulty: "",
+                ingredients: "",
+                image: drink.strDrinkThumb
+            )
+        }
+        DispatchQueue.main.async {
+            self.cocktailDetails = cocktailCards // Update cocktails property
+        }
+    }
+    
     
     func getRandomDrinks(){
         apiManager.fetchByRandom { (result: Result<DrinkList, Error>) in

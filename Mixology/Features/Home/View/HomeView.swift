@@ -66,7 +66,7 @@ struct HomeView: View {
                        Spacer()
 
                        ScrollView(.horizontal, showsIndicators: false) {
-                           HStack(spacing: 16) {
+                            HStack(spacing: 16) {
                                ForEach(viewModel.iconButtons, id: \.self) { item in
                                    IconButton(item: item){
                                        selectedCategory = item.drinkName
@@ -112,15 +112,10 @@ struct HomeView: View {
                                              .padding(.leading, 20)
 
                                ScrollView(.horizontal, showsIndicators: false) {
-                                   HStack {
+                                   LazyHStack {
                                        ForEach(cocktails) { cocktail in
-                                           
                                                CardView(cocktail: cocktail)
                                                    .frame(width: 200)
-                                                           
-                                     
-                                           
-                                           
                                        }
                                    }
                                    .padding(.horizontal)
@@ -150,6 +145,9 @@ struct HomeView: View {
                                    .padding(.horizontal)
                                }
                            }.padding(.top,15)
+                           
+                           
+                           /*
                        
                            VStack(alignment: .leading) {
                                Text("Favourites")
@@ -167,6 +165,7 @@ struct HomeView: View {
                                    .padding(.horizontal)
                                }
                            }.padding(.top,15)
+                            */
                            
                            /*
                            VStack(alignment: .leading) {
