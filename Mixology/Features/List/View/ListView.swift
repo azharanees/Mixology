@@ -13,13 +13,16 @@ struct ListView: View {
     var cocktails: [Cocktail]
 
     var body: some View {
-               List(cocktails) { cocktail in
-                       CardView(cocktail: cocktail)
-                           .frame(height: 150)
-                   
-                      
-               
-           }
-       }
+        if cocktails.isEmpty {
+            Text("No cocktails found")
+                .foregroundColor(.gray)
+                .padding()
+        } else {
+            List(cocktails) { cocktail in
+                CardView(cocktail: cocktail)
+                    .frame(height: 150)
+            }
+        }
+    }
 }
 
