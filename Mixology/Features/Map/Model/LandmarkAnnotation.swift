@@ -15,5 +15,5 @@ final class LandmarkAnnotation: NSObject, MKAnnotation {
     init(landmark: Landmark) {
         self.title = landmark.name
         self.coordinate = landmark.coordinate
-    }
+            }
 }

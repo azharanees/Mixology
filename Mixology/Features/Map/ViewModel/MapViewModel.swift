@@ -32,7 +32,7 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
               locationManager?.desiredAccuracy = kCLLocationAccuracyBest
               locationManager!.delegate = self
           } else {
-              print("Show an alert letting them know this is off")
+              print("Location is disabled")
           }
       }
 
