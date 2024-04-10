@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 struct DetailsView: View {
     
     @ObservedObject var viewModel: DetailsViewModel
@@ -19,8 +18,7 @@ struct DetailsView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text(viewModel.cocktailDetails.name)
-                .font(.title)
+         
             
             AsyncImage(url: URL(string: viewModel.cocktailDetails.image)) { phase in
                 switch phase {
@@ -30,7 +28,7 @@ struct DetailsView: View {
                     image
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 150)
+                        .frame(width: 300)
                         .clipped()
                         .cornerRadius(10)
                 case .failure:
@@ -38,39 +36,50 @@ struct DetailsView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(height: 150)
-                                                .clipped()
-
+                        .clipped()
                         .cornerRadius(10)
                 default:
                     ProgressView()
                 }
             }
-            
-            Text(viewModel.cocktailDetails.description)
-                .font(.body)
-            
-            Button(action: {
-                viewModel.toggleFavorite()
-            }) {
-                Image(systemName: viewModel.cocktailDetails.isFavourite ? "heart.fill" : "heart")
-                    .foregroundColor(.red)
+                Text(viewModel.cocktailDetails.name)
                     .font(.title)
+
+            Spacer()
+
+            VStack {
+                Text("Instructions")
+                    .font(.headline)
+                Text(viewModel.cocktailDetails.description)
+                    .font(.body)
+                Spacer()
             }
             
-            Menu {
-             
-                ShareLink(
-                                     item: viewModel.cocktailDetails.name,
-                                     subject: Text("Check out this cocktail!"),
-                                     message: Text("\(viewModel.cocktailDetails.name) :- \(viewModel.cocktailDetails.description)"),
-                                     preview: SharePreview("\(viewModel.cocktailDetails.name)", image: viewModel.cocktailDetails.image)
-                                 )
-                          
+            HStack {
+                Button(action: {
+                    viewModel.toggleFavorite()
+                }) {
+                    Image(systemName: viewModel.cocktailDetails.isFavourite ? "heart.fill" : "heart")
+                        .foregroundColor(.red)
+                        .font(.title)
+                }
+                .padding()
+                
+                Menu {
+                        
+                           ShareLink(
+                                                item: viewModel.cocktailDetails.name,
+                                                subject: Text("Check out this cocktail!"),
+                                                message: Text("\(viewModel.cocktailDetails.name) :- \(viewModel.cocktailDetails.description)"),
+                                                preview: SharePreview("\(viewModel.cocktailDetails.name)", image: viewModel.cocktailDetails.image)
+                                            )
+                                     
 
-            } label: {
-                Image(systemName: "square.and.arrow.up")
-                    .foregroundColor(.blue)
-                    .font(.title)
+                       } label: {
+                           Image(systemName: "square.and.arrow.up")
+                               .foregroundColor(.blue)
+                               .font(.title)
+                       }
             }
             
             Spacer()
@@ -81,19 +90,4 @@ struct DetailsView: View {
         }
         .navigationTitle(viewModel.cocktailDetails.name) // Assuming this is used within a NavigationView
     }
-}
-
-
-
-#Preview {
-        DetailsView(cocktail: Cocktail(
-            id: "1",
-            name: "drink.strDrink",
-            description: "",
-            strength: "",
-            difficulty: "",
-            ingredients: "",
-            image: "drink.strDrinkThumb"
-        )
-)
 }

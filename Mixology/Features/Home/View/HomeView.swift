@@ -19,6 +19,7 @@ struct HomeView: View {
     @State private var landmarks: [Landmark] = [Landmark]()
     @State private var tapped: Bool = false
     @ObservedObject var locationManager = LocationManager()
+    @State private var filteredCocktails: [Cocktail] = []
 
     
     private func getNearByLandmarks() {
@@ -60,11 +61,19 @@ struct HomeView: View {
            TabView {
                NavigationView {
                    VStack {
-                       NavigationLink(destination: ListView(cocktails: viewModel.cocktailDetails), isActive: $isNavigateToListView) { EmptyView() }
+                       NavigationLink(destination: ListView(cocktails: filteredCocktails), isActive: $isNavigateToListView) { EmptyView() }
                        SearchBar(text: $searchText, searchName: selectedCategory ?? "Margarita", isNavigateToListView: $isNavigateToListView)
                        
                        Spacer()
-
+                       
+                           .onChange(of: searchText) { searchText in
+                               if searchText.isEmpty {
+                                   filteredCocktails = viewModel.cocktailDetails
+                               } else {
+                                   filteredCocktails = viewModel.cocktailDetails.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+                               }
+                           }
+                   
                        ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 16) {
                                ForEach(viewModel.iconButtons, id: \.self) { item in
@@ -139,54 +148,12 @@ struct HomeView: View {
                                    HStack {
                                        ForEach(recommendCocktails) { cocktail in
                                            CardView(cocktail: cocktail, singleItem: true)
-                                               .frame(width: 200) // Adjust the card width as needed
                                        }
                                    }
-                                   .padding(.horizontal)
                                }
                            }.padding(.top,15)
                            
                            
-                           /*
-                       
-                           VStack(alignment: .leading) {
-                               Text("Favourites")
-                                             .font(.headline)
-                                             .padding(.bottom, 5)
-                                             .padding(.leading, 20)
-
-                               ScrollView(.horizontal, showsIndicators: false) {
-                                   HStack {
-                                       ForEach(cocktails) { cocktail in
-                                           CardView(cocktail: cocktail)
-                                               .frame(width: 200) // Adjust the card width as needed
-                                       }
-                                   }
-                                   .padding(.horizontal)
-                               }
-                           }.padding(.top,15)
-                            */
-                           
-                           /*
-                           VStack(alignment: .leading) {
-                               Text("Underrated")
-                                             .font(.headline)
-                                             .padding(.bottom, 8)
-                                             .padding(.leading, 20)
-                               
-                                                
-                               ScrollView(.horizontal, showsIndicators: false) {
-                                   HStack {
-                                       ForEach(cocktails) { cocktail in
-                                           CardView(cocktail: cocktail)
-                                               .frame(width: 200) // Adjust the card width as needed
-                                       }
-                                   }
-                                   .padding(.horizontal)
-                               }
-                           }
-                           .padding(.top,15)
-                           */
                        }
                        
                    }
@@ -339,7 +306,7 @@ struct CardView: View {
             .cornerRadius(10)
             .shadow(radius: 5)
             .padding(.vertical, 5)
-            .frame(width: singleItem ? 500 : nil) // Conditional modifier for frame width
+            .frame(width: singleItem ? 400 : nil) // Conditional modifier for frame width
         }
     }
 }

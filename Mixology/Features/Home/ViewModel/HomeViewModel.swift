@@ -100,8 +100,8 @@ class HomeViewModel : ObservableObject {
         }
     }
     
-
-
+    
+    
     func sortDrinks(by criteria: SortCriteria) {
         switch criteria {
         case .name:
