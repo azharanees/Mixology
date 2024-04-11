@@ -8,7 +8,7 @@ Mixology analyzes your taste, predicts your next favorite cocktail, and offers p
 
 ## Group Members
 
- - Mohammed Anees Azhar Anees 
+ - Mohammed Anees Azhar Ahamed 
      - Email : a_mohammedanees@fanshaweonline.ca
      - Student Number : 1158357
  - Shashi Dev Shrestha
